@@ -73,8 +73,165 @@ System.register("chunks:///_virtual/Bottle.ts", ['./rollupPluginModLoBabelHelper
   };
 });
 
-System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './PowerBarController.ts', './Bottle.ts', './StabilityUI.ts'], function (exports) {
-  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, _createForOfIteratorHelperLoose, cclegacy, _decorator, Node, Prefab, Label, resources, JsonAsset, instantiate, UITransform, Vec3, tween, Component, PowerBarController, GradeType, Bottle, StabilityUI;
+System.register("chunks:///_virtual/BottleLandEffect.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, resources, Texture2D, SpriteFrame, Node, Sprite, Component;
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      resources = module.resources;
+      Texture2D = module.Texture2D;
+      SpriteFrame = module.SpriteFrame;
+      Node = module.Node;
+      Sprite = module.Sprite;
+      Component = module.Component;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+      cclegacy._RF.push({}, "a6d31GwgUFGmq4DQ+7SzMTj", "BottleLandEffect", undefined);
+      var ccclass = _decorator.ccclass,
+        property = _decorator.property,
+        menu = _decorator.menu;
+      var BottleLandEffect = exports('BottleLandEffect', (_dec = ccclass('BottleLandEffect'), _dec2 = menu('Effects/BottleLandEffect'), _dec3 = property({
+        tooltip: 'Perfect 序列帧文件夹路径（如 images/Perfect）'
+      }), _dec4 = property({
+        tooltip: 'Good 序列帧文件夹路径（如 images/Good）'
+      }), _dec5 = property({
+        tooltip: 'Miss 序列帧文件夹路径（如 images/Miss）'
+      }), _dec6 = property({
+        tooltip: '播放帧率'
+      }), _dec(_class = _dec2(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(BottleLandEffect, _Component);
+        function BottleLandEffect() {
+          var _this;
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+          _initializerDefineProperty(_this, "perfectPath", _descriptor, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "goodPath", _descriptor2, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "missPath", _descriptor3, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "fps", _descriptor4, _assertThisInitialized(_this));
+          _this._cache = new Map();
+          _this._loading = new Map();
+          return _this;
+        }
+        var _proto = BottleLandEffect.prototype;
+        _proto.play = function play(grade, bottle, onFinish) {
+          var _this2 = this;
+          var path = this._getPath(grade);
+          if (!path) {
+            onFinish();
+            return;
+          }
+          var cached = this._cache.get(path);
+          if (cached) {
+            this._playFrames(cached, bottle, onFinish);
+            return;
+          }
+          if (this._loading.get(path)) {
+            this.scheduleOnce(function () {
+              return _this2.play(grade, bottle, onFinish);
+            }, 0.1);
+            return;
+          }
+          this._loading.set(path, true);
+          resources.loadDir(path, Texture2D, function (err, textures) {
+            _this2._loading.set(path, false);
+            if (err || !textures || textures.length === 0) {
+              console.warn("\u52A0\u8F7D\u5E8F\u5217\u5E27\u5931\u8D25: " + path, err == null ? void 0 : err.message);
+              onFinish();
+              return;
+            }
+            textures.sort(function (a, b) {
+              var na = _this2._extractNum(a.name);
+              var nb = _this2._extractNum(b.name);
+              return na - nb;
+            });
+            var frames = textures.map(function (t) {
+              var sf = new SpriteFrame();
+              sf.texture = t;
+              return sf;
+            });
+            _this2._cache.set(path, frames);
+            _this2._playFrames(frames, bottle, onFinish);
+          });
+        };
+        _proto._playFrames = function _playFrames(frames, bottle, onFinish) {
+          var fx = new Node('LandFX');
+          fx.parent = bottle.parent;
+          fx.worldPosition = bottle.worldPosition;
+          var sprite = fx.addComponent(Sprite);
+          sprite.spriteFrame = frames[0];
+          var index = 1;
+          var interval = 1 / this.fps;
+          this.schedule(function () {
+            sprite.spriteFrame = frames[index];
+            index++;
+            if (index >= frames.length) {
+              fx.destroy();
+              onFinish();
+            }
+          }, interval, frames.length - 1);
+        };
+        _proto._extractNum = function _extractNum(name) {
+          var m = name.match(/\d+/);
+          return m ? parseInt(m[0], 10) : 0;
+        };
+        _proto._getPath = function _getPath(grade) {
+          switch (grade) {
+            case 'Perfect':
+              return this.perfectPath;
+            case 'Good':
+              return this.goodPath;
+            case 'Miss':
+              return this.missPath;
+            default:
+              return '';
+          }
+        };
+        return BottleLandEffect;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "perfectPath", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return '';
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "goodPath", [_dec4], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return '';
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "missPath", [_dec5], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return '';
+        }
+      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "fps", [_dec6], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return 12;
+        }
+      })), _class2)) || _class) || _class));
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './PowerBarController.ts', './Bottle.ts', './StabilityUI.ts', './HandController.ts'], function (exports) {
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, _createForOfIteratorHelperLoose, cclegacy, _decorator, Node, Prefab, Label, Camera, AudioClip, resources, JsonAsset, instantiate, UITransform, AudioSource, Vec3, tween, Component, PowerBarController, GradeType, Bottle, StabilityUI, HandController;
   return {
     setters: [function (module) {
       _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
@@ -88,10 +245,13 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
       Node = module.Node;
       Prefab = module.Prefab;
       Label = module.Label;
+      Camera = module.Camera;
+      AudioClip = module.AudioClip;
       resources = module.resources;
       JsonAsset = module.JsonAsset;
       instantiate = module.instantiate;
       UITransform = module.UITransform;
+      AudioSource = module.AudioSource;
       Vec3 = module.Vec3;
       tween = module.tween;
       Component = module.Component;
@@ -102,9 +262,11 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
       Bottle = module.Bottle;
     }, function (module) {
       StabilityUI = module.StabilityUI;
+    }, function (module) {
+      HandController = module.HandController;
     }],
     execute: function () {
-      var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+      var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15;
       cclegacy._RF.push({}, "6819evjpIxCY6LcK38SHLDV", "GameManager", undefined);
       var ccclass = _decorator.ccclass,
         property = _decorator.property;
@@ -123,6 +285,34 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
       }), _dec6 = property({
         type: Label,
         tooltip: 'Label_Number（数字，不含"瓶数："文字）'
+      }), _dec7 = property({
+        type: HandController,
+        tooltip: '手臂控制器'
+      }), _dec8 = property({
+        type: Camera,
+        tooltip: '主摄像机（从场景拖入）'
+      }), _dec9 = property({
+        tooltip: '从第几瓶开始，TowerContainer 每叠一瓶下移一个瓶高'
+      }), _dec10 = property({
+        tooltip: '从第几瓶开始，每叠一瓶销毁最老的瓶子'
+      }), _dec11 = property({
+        type: Node,
+        tooltip: '背景图节点（Canvas 下的 Bg）'
+      }), _dec12 = property({
+        type: AudioClip,
+        tooltip: '扔瓶音效'
+      }), _dec13 = property({
+        type: AudioClip,
+        tooltip: 'Perfect 音效'
+      }), _dec14 = property({
+        type: AudioClip,
+        tooltip: 'Good 音效'
+      }), _dec15 = property({
+        type: AudioClip,
+        tooltip: 'Miss 音效'
+      }), _dec16 = property({
+        type: AudioClip,
+        tooltip: '背景音乐'
       }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
         _inheritsLoose(GameManager, _Component);
         function GameManager() {
@@ -136,11 +326,24 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
           _initializerDefineProperty(_this, "towerContainer", _descriptor3, _assertThisInitialized(_this));
           _initializerDefineProperty(_this, "bottlePrefab", _descriptor4, _assertThisInitialized(_this));
           _initializerDefineProperty(_this, "heightLabel", _descriptor5, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "handController", _descriptor6, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "mainCamera", _descriptor7, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "startMoveBottleCount", _descriptor8, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "startDestroyBottleCount", _descriptor9, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "bgNode", _descriptor10, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "sfxThrow", _descriptor11, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "sfxPerfect", _descriptor12, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "sfxGood", _descriptor13, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "sfxMiss", _descriptor14, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "bgm", _descriptor15, _assertThisInitialized(_this));
           _this._config = null;
           _this._bottleCount = 0;
           _this._isThrowing = false;
           _this._currentBottle = null;
           _this._bottleHeight = 60;
+          _this._initialTowerLocalY = 0;
+          _this._bgInitialY = 0;
+          _this._bgMinY = -99999;
           return _this;
         }
         var _proto = GameManager.prototype;
@@ -165,14 +368,53 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
           if (this.bottlePrefab) {
             var temp = instantiate(this.bottlePrefab);
             var ui = temp.getComponent(UITransform);
-            if (ui) this._bottleHeight = ui.height;
+            if (ui) this._bottleHeight = ui.height || 60;
             temp.destroy();
           }
+          console.error("[INIT] _bottleHeight = " + this._bottleHeight);
+          console.error("[INIT] TowerContainer world(Y)=" + (this.towerContainer ? this.towerContainer.worldPosition.y : '?') + " GameManager world(Y)=" + this.node.worldPosition.y);
           if (this.stabilityUI) this.stabilityUI.init(this._config.stability.initial);
-          if (this.powerBar) this.powerBar.node.on('power-charged', this.onPowerCharged, this);
+          if (this.powerBar) {
+            this.powerBar.node.on('power-charged', this.onPowerCharged, this);
+            this._randomizePerfectZone();
+          }
           this._bottleCount = 0;
+          this._initialTowerLocalY = this.towerContainer ? this.towerContainer.position.y - this.node.position.y : 0;
+
+          // 记录背景初始 Y，计算可下移的最小 Y
+          if (this.bgNode) {
+            this._bgInitialY = this.bgNode.position.y;
+            var bgTf = this.bgNode.getComponent(UITransform);
+            var bgHeight = bgTf ? bgTf.height : 0;
+            var scaleY = this.bgNode.scale.y;
+
+            // 向上遍历找 Canvas 节点获取屏幕高度
+            var screenHeight = 1334;
+            var walk = this.bgNode.parent;
+            while (walk) {
+              var ut = walk.getComponent(UITransform);
+              if (ut) {
+                screenHeight = ut.height;
+                break;
+              }
+              walk = walk.parent;
+            }
+            var maxDown = Math.max(0, bgHeight * scaleY - screenHeight);
+            this._bgMinY = this._bgInitialY - maxDown;
+            console.error("[INIT] bgInitialY=" + this._bgInitialY + " bgHeight=" + bgHeight + " scaleY=" + scaleY + " screenHeight=" + screenHeight + " maxDown=" + maxDown + " bgMinY=" + this._bgMinY);
+          }
           this._spawnBottle();
           this._refreshHeightLabel();
+
+          // 开始背景音乐
+          if (this.bgm) {
+            var as = this.node.getComponent(AudioSource);
+            if (as) {
+              as.clip = this.bgm;
+              as.loop = true;
+              as.play();
+            }
+          }
         }
 
         // ==================== 蓄力回调 ====================
@@ -182,13 +424,19 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
           var _this3 = this;
           if (this._isThrowing || !this._config || !this._currentBottle) return;
           this._isThrowing = true;
+          if (this.powerBar) this.powerBar.setCanCharge(false);
           var speedMult = this._getStageSpeed();
           var duration = this._config.bottle.throwDuration / speedMult;
           var offsetX = this._calcOffset(grade);
           var isMiss = grade === GradeType.MISS;
 
-          // TowerContainer 转成 GameManager 本地坐标（瓶子的父空间）
+          // TowerContainer 转成 GameManager 本地坐标
           var towerLocal = this.towerContainer ? new Vec3(this.towerContainer.position.x - this.node.position.x, this.towerContainer.position.y - this.node.position.y, 0) : Vec3.ZERO.clone();
+
+          // 瓶子起点（世界坐标 → GameManager 本地坐标）
+          var bottleWorldPos = this._currentBottle.worldPosition.clone();
+          var gmWorldPos = this.node.worldPosition.clone();
+          var bottleLocalY = bottleWorldPos.y - gmWorldPos.y;
           var bottle = this._currentBottle.getComponent(Bottle);
           if (!bottle) {
             this._isThrowing = false;
@@ -197,37 +445,60 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
           var arcHeight = 150;
           var target;
           if (isMiss) {
-            // ===== Miss =====
-            var bottleY = this._currentBottle.position.y;
             var towerTopY = towerLocal.y + this._bottleCount * this._bottleHeight;
             var isRight = offsetX > 0;
             if (isRight) {
-              // 右偏移（蓄力 65~100）→ 飞越塔顶，掉到左侧屏外
               arcHeight = 200 + value * 5;
-              var overTower = towerTopY - bottleY;
+              var overTower = towerTopY - bottleLocalY;
               if (overTower > 0) arcHeight += overTower;
-              arcHeight = Math.max(arcHeight, towerTopY - bottleY + 100, 200);
+              arcHeight = Math.max(arcHeight, towerTopY - bottleLocalY + 100, 200);
               target = new Vec3(towerLocal.x - (100 + Math.random() * 100), this._config.bottle.fallY, 0);
             } else {
-              // 左偏移（蓄力 0~35）→ 飞到塔附近高度，再掉下去
               var ratio = Math.min(value / 35, 1);
-              var peakY = bottleY + (towerTopY - bottleY - 10) * ratio;
-              arcHeight = Math.max(20, peakY - bottleY);
+              var peakY = bottleLocalY + (towerTopY - bottleLocalY - 10) * ratio;
+              arcHeight = Math.max(20, peakY - bottleLocalY);
               target = new Vec3(towerLocal.x - (80 + Math.random() * 100), peakY, 0);
             }
           } else {
-            // ===== Perfect / Good =====
-            target = new Vec3(towerLocal.x + offsetX, towerLocal.y + this._bottleCount * this._bottleHeight, 0);
+            // 用初始 towerLocalY（容器下移前的值），确保每个瓶子落在不同的 y 位置
+            target = new Vec3(towerLocal.x + offsetX, this._initialTowerLocalY + this._bottleCount * this._bottleHeight, 0);
+            console.error("[TARGET] towerLocal=(" + towerLocal.x + "," + towerLocal.y + ") initial=" + this._initialTowerLocalY + " count=" + this._bottleCount + " h=" + this._bottleHeight + " targetGM=(" + target.x + "," + target.y + ") targetWorldY=" + (this.node.worldPosition.y + target.y));
           }
           var adjustedDuration = Math.max(duration * (1 - value / 100 * 0.4), 0.3);
-          bottle.flyTo(target, adjustedDuration, this._config.bottle.rotationDegrees, arcHeight, function () {
-            return _this3._onBottleLanded(grade);
-          });
+
+          // 投掷音效
+          var as = this.node.getComponent(AudioSource);
+          if (this.sfxThrow && as) as.playOneShot(this.sfxThrow, 1);
+
+          // === 有手臂 → 先挥手动画，脱手后飞出去 ===
+          if (this.handController) {
+            this.handController.playThrow(function () {
+              // 脱手：从手掌分离，设到 GameManager 下
+              _this3._currentBottle.parent = _this3.node;
+              _this3._currentBottle.angle = 0;
+              // 同步位置（换父节点后 Cocos Creator 自动保持世界位置）
+              bottle.flyTo(target, adjustedDuration, _this3._config.bottle.rotationDegrees, arcHeight, function () {
+                return _this3._onBottleLanded(grade);
+              });
+            });
+          } else {
+            // 无手臂 → 直接飞
+            bottle.flyTo(target, adjustedDuration, this._config.bottle.rotationDegrees, arcHeight, function () {
+              return _this3._onBottleLanded(grade);
+            });
+          }
         };
         _proto._onBottleLanded = function _onBottleLanded(grade) {
-          var _this$_config$stabili,
+          var _sfxMap,
+            _this$_config$stabili,
             _this4 = this;
           if (!this._config) return;
+
+          // 结果音效
+          var as = this.node.getComponent(AudioSource);
+          var sfxMap = (_sfxMap = {}, _sfxMap[GradeType.PERFECT] = this.sfxPerfect, _sfxMap[GradeType.GOOD] = this.sfxGood, _sfxMap[GradeType.MISS] = this.sfxMiss, _sfxMap);
+          var clip = sfxMap[grade];
+          if (clip && as) as.playOneShot(clip, 1);
           var costKey = grade;
           var cost = (_this$_config$stabili = this._config.stability.cost[costKey]) != null ? _this$_config$stabili : 0;
           if (this.stabilityUI) {
@@ -245,14 +516,18 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
                   _this4._currentBottle.destroy();
                   _this4._currentBottle = null;
                   _this4._refreshHeightLabel();
+                  _this4._randomizePerfectZone();
                   _this4._spawnBottle();
+                  if (_this4.powerBar) _this4.powerBar.setCanCharge(true);
                   _this4._isThrowing = false;
+                  _this4.node.emit('throw-result', grade, _this4._bottleCount);
                 }).start();
                 return;
               }
               this._currentBottle.destroy();
               this._currentBottle = null;
             }
+            // 继续到下方统一执行 _spawnBottle / _randomizePerfectZone
           } else {
             // 瓶子已经落在正确的世界位置，只需换父节点
             if (this._currentBottle && this.towerContainer) {
@@ -261,11 +536,83 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
             }
 
             this._bottleCount++;
+            this._adjustTowerForHeight();
             this._currentBottle = null;
           }
           this._refreshHeightLabel();
+          this._randomizePerfectZone();
           this._spawnBottle();
+          if (this.powerBar) this.powerBar.setCanCharge(true);
           this._isThrowing = false;
+
+          // 抛瓶结果事件，供其他模块引用
+          this.node.emit('throw-result', grade, this._bottleCount);
+        }
+
+        // ==================== Perfect 区间随机化 ====================
+        ;
+
+        _proto._randomizePerfectZone = function _randomizePerfectZone() {
+          if (!this._config || !this.powerBar) return;
+          var r = this._config.perfectRandomRange;
+          if (!r) return;
+
+          // 1. 随机 Perfect 宽度（5~20）
+          var pw = r.perfectWidthMin + Math.random() * (r.perfectWidthMax - r.perfectWidthMin);
+          var perfectWidth = Math.round(pw);
+
+          // 2. 随机 Good 起始位置（0 ~ 100-goodTotalWidth），Good+Perfect 整体移动
+          var maxGoodMin = 100 - r.goodTotalWidth;
+          var goodMin = Math.round(Math.random() * maxGoodMin);
+          var goodMax = goodMin + r.goodTotalWidth;
+          var goodCenter = goodMin + r.goodTotalWidth / 2;
+
+          // 3. Perfect 居中于 Good（先定最小值，再加宽度确保一致性）
+          var halfPW = perfectWidth / 2;
+          var perfectMin = Math.round(goodCenter - halfPW);
+          var perfectMax = perfectMin + perfectWidth;
+          // 边界保护
+          if (perfectMin < goodMin) {
+            perfectMin = goodMin;
+            perfectMax = perfectMin + perfectWidth;
+          }
+          if (perfectMax > goodMax) {
+            perfectMax = goodMax;
+            perfectMin = perfectMax - perfectWidth;
+          }
+
+          // 4. 更新 PowerBar
+          this.powerBar.goodMin = goodMin;
+          this.powerBar.goodMax = goodMax;
+          this.powerBar.perfectMin = perfectMin;
+          this.powerBar.perfectMax = perfectMax;
+          this.powerBar.refreshZones();
+        }
+
+        // ==================== 瓶塔自适应 ====================
+        ;
+
+        _proto._adjustTowerForHeight = function _adjustTowerForHeight() {
+          if (!this.towerContainer) return;
+
+          // 从 startMoveBottleCount 开始，每叠一瓶，容器下移一个瓶高，使塔顶保持固定
+          if (this._bottleCount >= this.startMoveBottleCount) {
+            this.towerContainer.setPosition(this.towerContainer.position.x, this.towerContainer.position.y - this._bottleHeight, 0);
+
+            // 背景同步下移，但不能低于 _bgMinY
+            if (this.bgNode && this._bgMinY > -99999) {
+              var desiredBgY = this.bgNode.position.y - this._bottleHeight;
+              var clampedBgY = Math.max(desiredBgY, this._bgMinY);
+              this.bgNode.setPosition(this.bgNode.position.x, clampedBgY, 0);
+              console.error("[ADJUST] bg desired=" + desiredBgY + " clamped=" + clampedBgY + " minY=" + this._bgMinY);
+            }
+          }
+
+          // 从 startDestroyBottleCount 开始，每叠一瓶销毁最老的瓶子
+          if (this._bottleCount >= this.startDestroyBottleCount) {
+            var oldest = this.towerContainer.children[0];
+            if (oldest) oldest.destroy();
+          }
         }
 
         // ==================== 工具 ====================
@@ -296,9 +643,15 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
         _proto._spawnBottle = function _spawnBottle() {
           if (!this._config || !this.bottlePrefab) return;
           var node = instantiate(this.bottlePrefab);
-          node.parent = this.node;
-          node.setPosition(this._config.bottle.startPos.x, this._config.bottle.startPos.y, 0);
           node.angle = 0;
+          if (this.handController) {
+            // 瓶子生成在手掌中心
+            node.parent = this.handController.getSpawnPoint();
+            node.setPosition(Vec3.ZERO);
+          } else {
+            node.parent = this.node;
+            node.setPosition(this._config.bottle.startPos.x, this._config.bottle.startPos.y, 0);
+          }
           this._currentBottle = node;
           if (!node.getComponent(Bottle)) node.addComponent(Bottle);
         };
@@ -341,15 +694,347 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
         initializer: function initializer() {
           return null;
         }
+      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, "handController", [_dec7], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "mainCamera", [_dec8], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, "startMoveBottleCount", [_dec9], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return 7;
+        }
+      }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, "startDestroyBottleCount", [_dec10], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return 9;
+        }
+      }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "bgNode", [_dec11], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "sfxThrow", [_dec12], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, "sfxPerfect", [_dec13], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, "sfxGood", [_dec14], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, "sfxMiss", [_dec15], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, "bgm", [_dec16], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
       })), _class2)) || _class));
       cclegacy._RF.pop();
     }
   };
 });
 
-System.register("chunks:///_virtual/main", ['./Bottle.ts', './GameManager.ts', './StabilityUI.ts', './PauseButton.ts', './PowerBarController.ts', './RestartGame.ts', './ResumeButton.ts', './SceneSwitchButton.ts', './StabilityMonitor.ts', './ValueSlot.ts'], function () {
+System.register("chunks:///_virtual/HandController.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Node, Sprite, tween, Component;
   return {
-    setters: [null, null, null, null, null, null, null, null, null, null],
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      Node = module.Node;
+      Sprite = module.Sprite;
+      tween = module.tween;
+      Component = module.Component;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
+      cclegacy._RF.push({}, "df44a4Y8DpH9KhZHVmZUFka", "HandController", undefined);
+      var ccclass = _decorator.ccclass,
+        property = _decorator.property;
+      var HandController = exports('HandController', (_dec = ccclass('HandController'), _dec2 = property({
+        type: Node,
+        tooltip: '手臂旋转根节点（ArmHolder）'
+      }), _dec3 = property({
+        type: Node,
+        tooltip: '瓶子生成点（放在手掌位置）'
+      }), _dec4 = property({
+        type: Sprite,
+        tooltip: '手臂 Sprite 组件'
+      }), _dec5 = property({
+        type: Sprite,
+        tooltip: '拇指 Sprite 组件'
+      }), _dec6 = property({
+        tooltip: '待机角度'
+      }), _dec7 = property({
+        tooltip: '后摆角度（负=向后）'
+      }), _dec8 = property({
+        tooltip: '投出角度（脱手瞬间）'
+      }), _dec9 = property({
+        tooltip: '跟随角度'
+      }), _dec10 = property({
+        tooltip: '动画总时长（秒）'
+      }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(HandController, _Component);
+        function HandController() {
+          var _this;
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+          _initializerDefineProperty(_this, "armHolder", _descriptor, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "spawnPoint", _descriptor2, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "armSprite", _descriptor3, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "thumbSprite", _descriptor4, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "idleAngle", _descriptor5, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "windupAngle", _descriptor6, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "releaseAngle", _descriptor7, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "followAngle", _descriptor8, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "animDuration", _descriptor9, _assertThisInitialized(_this));
+          _this._isAnimating = false;
+          return _this;
+        }
+        var _proto = HandController.prototype;
+        _proto.getSpawnPoint = function getSpawnPoint() {
+          return this.spawnPoint;
+        };
+        _proto.isAnimating = function isAnimating() {
+          return this._isAnimating;
+        }
+
+        /** 播放投掷动画，onRelease 在脱手瞬间回调 */;
+        _proto.playThrow = function playThrow(onRelease) {
+          var _this2 = this;
+          if (this._isAnimating || !this.armHolder) return;
+          this._isAnimating = true;
+          var dur = this.animDuration;
+          var tWindup = dur * 0.3;
+          var tThrow = dur * 0.35;
+          var tFollow = dur * 0.2;
+          var tReturn = dur * 0.15;
+          tween(this.armHolder).to(tWindup, {
+            angle: this.windupAngle
+          }, {
+            easing: 'quad-in'
+          }).to(tThrow, {
+            angle: this.releaseAngle
+          }, {
+            easing: 'quad-out'
+          }).call(function () {
+            onRelease();
+          }).to(tFollow, {
+            angle: this.followAngle
+          }, {
+            easing: 'quad-out'
+          }).to(tReturn, {
+            angle: this.idleAngle
+          }, {
+            easing: 'sine-out'
+          }).call(function () {
+            _this2._isAnimating = false;
+          }).start();
+        }
+
+        /** 切换皮肤 */;
+        _proto.setSkin = function setSkin(armFrame, thumbFrame) {
+          if (this.armSprite && armFrame) this.armSprite.spriteFrame = armFrame;
+          if (this.thumbSprite && thumbFrame) this.thumbSprite.spriteFrame = thumbFrame;
+        }
+
+        /** 立即复位 */;
+        _proto.reset = function reset() {
+          this.armHolder.angle = this.idleAngle;
+          this._isAnimating = false;
+        };
+        return HandController;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "armHolder", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "spawnPoint", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "armSprite", [_dec4], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "thumbSprite", [_dec5], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "idleAngle", [_dec6], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return 0;
+        }
+      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, "windupAngle", [_dec7], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return -45;
+        }
+      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "releaseAngle", [_dec8], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return 70;
+        }
+      }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, "followAngle", [_dec9], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return 90;
+        }
+      }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, "animDuration", [_dec10], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return 0.4;
+        }
+      })), _class2)) || _class));
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/ImageSwapButton.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Node, Sprite, director, Component;
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      Node = module.Node;
+      Sprite = module.Sprite;
+      director = module.director;
+      Component = module.Component;
+    }],
+    execute: function () {
+      var _dec, _dec2, _class, _class2, _descriptor, _descriptor2;
+      cclegacy._RF.push({}, "578f8rbMH5A3bhK2m8AeH0j", "ImageSwapButton", undefined);
+      var ccclass = _decorator.ccclass,
+        property = _decorator.property,
+        menu = _decorator.menu;
+      var ImageSwapButton = exports('ImageSwapButton', (_dec = ccclass('ImageSwapButton'), _dec2 = menu('Button/ImageSwapButton'), _dec(_class = _dec2(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(ImageSwapButton, _Component);
+        function ImageSwapButton() {
+          var _this;
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+          _initializerDefineProperty(_this, "sceneName", _descriptor, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "delay", _descriptor2, _assertThisInitialized(_this));
+          return _this;
+        }
+        var _proto = ImageSwapButton.prototype;
+        _proto.start = function start() {
+          this.node.on(Node.EventType.TOUCH_START, this.onPress, this);
+          this.node.on(Node.EventType.TOUCH_END, this.onRelease, this);
+          this.node.on(Node.EventType.TOUCH_CANCEL, this.onRelease, this);
+          this.node.on(Node.EventType.MOUSE_DOWN, this.onPress, this);
+          this.node.on(Node.EventType.MOUSE_UP, this.onRelease, this);
+        };
+        _proto.onPress = function onPress() {
+          var sprite = this.getComponent(Sprite);
+          if (sprite) sprite.enabled = false;
+        };
+        _proto.onRelease = function onRelease() {
+          var _this2 = this;
+          var sprite = this.getComponent(Sprite);
+          if (sprite) sprite.enabled = true;
+          if (this.sceneName) {
+            this.scheduleOnce(function () {
+              return director.loadScene(_this2.sceneName);
+            }, this.delay);
+          }
+        };
+        return ImageSwapButton;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "sceneName", [property], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return '';
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "delay", [property], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return 0;
+        }
+      })), _class2)) || _class) || _class));
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/main", ['./BottleLandEffect.ts', './Bottle.ts', './GameManager.ts', './HandController.ts', './StabilityUI.ts', './ImageSwapButton.ts', './PauseButton.ts', './PowerBarController.ts', './RestartGame.ts', './ResumeButton.ts', './SceneSwitchButton.ts', './StabilityMonitor.ts', './ValueSlot.ts'], function () {
+  return {
+    setters: [null, null, null, null, null, null, null, null, null, null, null, null, null],
     execute: function () {}
   };
 });
@@ -450,7 +1135,7 @@ System.register("chunks:///_virtual/PauseButton.ts", ['./rollupPluginModLoBabelH
 });
 
 System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
-  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, _createForOfIteratorHelperLoose, cclegacy, _decorator, CCInteger, CCFloat, Node, Label, UITransform, Vec2, input, EventMouse, resources, JsonAsset, Sprite, Color, Vec3, Component;
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, _createForOfIteratorHelperLoose, cclegacy, _decorator, CCInteger, CCFloat, Node, Label, input, EventMouse, UITransform, Vec3, Color, Component;
   return {
     setters: [function (module) {
       _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
@@ -465,19 +1150,15 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
       CCFloat = module.CCFloat;
       Node = module.Node;
       Label = module.Label;
-      UITransform = module.UITransform;
-      Vec2 = module.Vec2;
       input = module.input;
       EventMouse = module.EventMouse;
-      resources = module.resources;
-      JsonAsset = module.JsonAsset;
-      Sprite = module.Sprite;
-      Color = module.Color;
+      UITransform = module.UITransform;
       Vec3 = module.Vec3;
+      Color = module.Color;
       Component = module.Component;
     }],
     execute: function () {
-      var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15;
+      var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13;
       cclegacy._RF.push({}, "17655ZKjfBKOb3ErnCw2gkc", "PowerBarController", undefined);
       var ccclass = _decorator.ccclass,
         property = _decorator.property;
@@ -511,34 +1192,29 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
         type: CCFloat,
         tooltip: '蓄力指针移动速度(值/秒)'
       }), _dec7 = property({
-        tooltip: '是否从 JSON 加载配置'
+        type: Node,
+        tooltip: '蓄力条容器（UI_power_bar 的父节点）'
       }), _dec8 = property({
         type: Node,
-        tooltip: '蓄力条容器（色块/指针/填充条都放它下面）'
+        tooltip: '蓄力指针（UI_power_pointer）'
       }), _dec9 = property({
         type: Node,
-        tooltip: '指针节点（必须是 BarContainer 的子节点）'
+        tooltip: 'Perfect 大星（starPerfect）'
       }), _dec10 = property({
         type: Node,
-        tooltip: '填充条节点（必须是 BarContainer 的子节点）'
+        tooltip: 'Good 左侧小星 1'
       }), _dec11 = property({
-        type: Label,
-        tooltip: '当前等级文本'
+        type: Node,
+        tooltip: 'Good 左侧小星 2'
       }), _dec12 = property({
         type: Node,
-        tooltip: 'MissLeft'
+        tooltip: 'Good 右侧小星 1'
       }), _dec13 = property({
         type: Node,
-        tooltip: 'GoodLeft'
+        tooltip: 'Good 右侧小星 2'
       }), _dec14 = property({
-        type: Node,
-        tooltip: 'Perfect'
-      }), _dec15 = property({
-        type: Node,
-        tooltip: 'GoodRight'
-      }), _dec16 = property({
-        type: Node,
-        tooltip: 'MissRight'
+        type: Label,
+        tooltip: '当前等级文本'
       }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
         _inheritsLoose(PowerBarController, _Component);
         function PowerBarController() {
@@ -547,44 +1223,30 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
             args[_key] = arguments[_key];
           }
           _this = _Component.call.apply(_Component, [this].concat(args)) || this;
-          // ==================== 等级阈值配置 ====================
           _initializerDefineProperty(_this, "perfectMin", _descriptor, _assertThisInitialized(_this));
           _initializerDefineProperty(_this, "perfectMax", _descriptor2, _assertThisInitialized(_this));
           _initializerDefineProperty(_this, "goodMin", _descriptor3, _assertThisInitialized(_this));
           _initializerDefineProperty(_this, "goodMax", _descriptor4, _assertThisInitialized(_this));
           _initializerDefineProperty(_this, "speed", _descriptor5, _assertThisInitialized(_this));
-          _initializerDefineProperty(_this, "useConfigFile", _descriptor6, _assertThisInitialized(_this));
-          // ==================== UI 节点引用 ====================
-          _initializerDefineProperty(_this, "barContainer", _descriptor7, _assertThisInitialized(_this));
-          _initializerDefineProperty(_this, "pointer", _descriptor8, _assertThisInitialized(_this));
-          _initializerDefineProperty(_this, "fillBar", _descriptor9, _assertThisInitialized(_this));
-          _initializerDefineProperty(_this, "gradeLabel", _descriptor10, _assertThisInitialized(_this));
-          _initializerDefineProperty(_this, "zoneMissLeft", _descriptor11, _assertThisInitialized(_this));
-          _initializerDefineProperty(_this, "zoneGoodLeft", _descriptor12, _assertThisInitialized(_this));
-          _initializerDefineProperty(_this, "zonePerfect", _descriptor13, _assertThisInitialized(_this));
-          _initializerDefineProperty(_this, "zoneGoodRight", _descriptor14, _assertThisInitialized(_this));
-          _initializerDefineProperty(_this, "zoneMissRight", _descriptor15, _assertThisInitialized(_this));
-          // ==================== 内部状态 ====================
+          _initializerDefineProperty(_this, "barContainer", _descriptor6, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "pointer", _descriptor7, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "starPerfect", _descriptor8, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "starGoodL1", _descriptor9, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "starGoodL2", _descriptor10, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "starGoodR1", _descriptor11, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "starGoodR2", _descriptor12, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "gradeLabel", _descriptor13, _assertThisInitialized(_this));
           _this._currentValue = 0;
           _this._direction = 1;
           _this._isCharging = false;
           _this._barWidth = 200;
+          _this._canCharge = true;
+          _this._starOffsets = [];
           return _this;
         }
         var _proto = PowerBarController.prototype;
         _proto.onLoad = function onLoad() {
           this._readBarWidth();
-
-          // 蓄力条左边缘在 BarContainer 本地坐标中的 X
-          // BarContainer 默认 anchor(0.5,0.5)，所以左边缘 = -barWidth/2
-          if (this.fillBar) {
-            var t = this.fillBar.getComponent(UITransform);
-            if (t) {
-              t.anchorPoint = new Vec2(0, 0.5);
-            }
-          }
-
-          // 注册鼠标事件（使用字符串类型避免枚举兼容问题）
           input.on('mouse-down', this.onMouseDown, this);
           input.on('mouse-up', this.onMouseUp, this);
         };
@@ -593,17 +1255,21 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
           input.off('mouse-up', this.onMouseUp, this);
         };
         _proto.start = function start() {
-          var _this2 = this;
-          var done = function done() {
-            _this2._setupZones();
-            _this2._updatePointerPosition();
-            _this2._updateGradeDisplay();
-          };
-          if (this.useConfigFile) {
-            this._loadConfig(done);
-          } else {
-            done();
+          // 记录各星星相对于 Perfect 大星的初始偏移
+          this._starOffsets = [];
+          if (this.starPerfect) {
+            var cx = this.starPerfect.position.x;
+            for (var _i = 0, _arr = [this.starGoodL1, this.starGoodL2, this.starGoodR1, this.starGoodR2, this.starPerfect]; _i < _arr.length; _i++) {
+              var n = _arr[_i];
+              if (n) this._starOffsets.push({
+                node: n,
+                ox: n.position.x - cx
+              });
+            }
           }
+          this._setupZones();
+          this._updatePointerPosition();
+          this._updateGradeDisplay();
         };
         _proto.update = function update(dt) {
           if (!this._isCharging) return;
@@ -624,53 +1290,20 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
 
         _proto.onMouseDown = function onMouseDown(evt) {
           if (evt.getButton() === EventMouse.BUTTON_LEFT) {
-            console.log('鼠标按下，开始蓄力');
+            if (!this._canCharge) return;
             this.startCharging();
           }
         };
+        _proto.setCanCharge = function setCanCharge(v) {
+          this._canCharge = v;
+        };
         _proto.onMouseUp = function onMouseUp(evt) {
           if (evt.getButton() === EventMouse.BUTTON_LEFT) {
-            console.log('鼠标松开，停止蓄力');
             this.stopCharging();
           }
         }
 
-        // ==================== JSON 配置加载 ====================
-        ;
-
-        _proto._loadConfig = function _loadConfig(cb) {
-          var _this3 = this;
-          resources.load('Config/PowerBarConfig', JsonAsset, function (err, asset) {
-            if (err) {
-              console.warn("\u52A0\u8F7D PowerBarConfig.json \u5931\u8D25: " + err.message);
-              cb();
-              return;
-            }
-            var cfg = asset.json;
-            if (cfg.zones) {
-              for (var _iterator = _createForOfIteratorHelperLoose(cfg.zones), _step; !(_step = _iterator()).done;) {
-                var z = _step.value;
-                switch (z.name) {
-                  case 'GoodLeft':
-                    _this3.goodMin = z.min;
-                    break;
-                  case 'GoodRight':
-                    _this3.goodMax = z.max;
-                    break;
-                  case 'Perfect':
-                    _this3.perfectMin = z.min;
-                    _this3.perfectMax = z.max;
-                    break;
-                }
-              }
-            }
-            if (cfg.speed) _this3.speed = cfg.speed;
-            console.log('PowerBar 配置已从 JSON 加载');
-            cb();
-          });
-        }
-
-        // ==================== 色块布局 ====================
+        // ==================== 星星布局 ====================
         ;
 
         _proto._readBarWidth = function _readBarWidth() {
@@ -682,59 +1315,31 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
           }
         };
         _proto._setupZones = function _setupZones() {
-          if (!this.barContainer) {
-            return;
-          }
+          if (!this.barContainer) return;
           this._readBarWidth();
-          var t = this.barContainer.getComponent(UITransform);
-          if (!t) {
-            return;
+
+          // Perfect 区间中心在蓄力条上的 X 位置
+          var perfectCenter = (this.perfectMin + this.perfectMax) / 2;
+          var centerX = perfectCenter / 100 * this._barWidth - this._barWidth / 2;
+
+          // 星星组整体移动，每颗星保持相对偏移
+          for (var _iterator = _createForOfIteratorHelperLoose(this._starOffsets), _step; !(_step = _iterator()).done;) {
+            var s = _step.value;
+            s.node.setPosition(new Vec3(centerX + s.ox, s.node.position.y, 0));
           }
-          var totalWidth = t.width;
-          var height = t.height;
-          var defs = [{
-            node: this.zoneMissLeft,
-            min: 0,
-            max: this.goodMin,
-            color: [255, 80, 80]
-          }, {
-            node: this.zoneGoodLeft,
-            min: this.goodMin,
-            max: this.perfectMin,
-            color: [255, 255, 100]
-          }, {
-            node: this.zonePerfect,
-            min: this.perfectMin,
-            max: this.perfectMax,
-            color: [100, 255, 100]
-          }, {
-            node: this.zoneGoodRight,
-            min: this.perfectMax,
-            max: this.goodMax,
-            color: [255, 255, 100]
-          }, {
-            node: this.zoneMissRight,
-            min: this.goodMax,
-            max: 100,
-            color: [255, 80, 80]
-          }];
-          for (var _i = 0, _defs = defs; _i < _defs.length; _i++) {
-            var d = _defs[_i];
-            if (!d.node) {
-              continue;
-            }
-            var sp = d.node.getComponent(Sprite);
-            if (sp) {
-              sp.color = new Color(d.color[0], d.color[1], d.color[2]);
-            }
-            var ut = d.node.getComponent(UITransform);
-            if (ut) {
-              ut.width = (d.max - d.min) / 100 * totalWidth;
-              ut.height = height;
-            }
-            var center = (d.min + d.max) / 2;
-            d.node.setPosition(new Vec3(center / 100 * totalWidth - totalWidth / 2, 0, 0));
-          }
+
+          // 根据 Good 范围决定小星星数量（三等分）
+          // GoodTotal = 30 - PerfectWidth，范围 10~25
+          var perfectWidth = this.perfectMax - this.perfectMin;
+          var goodTotal = 30 - perfectWidth;
+          var showL1 = goodTotal > 20;
+          var showL2 = goodTotal > 15;
+          var showR1 = goodTotal > 15;
+          var showR2 = goodTotal > 20;
+          if (this.starGoodL1) this.starGoodL1.active = showL1;
+          if (this.starGoodL2) this.starGoodL2.active = showL2;
+          if (this.starGoodR1) this.starGoodR1.active = showR1;
+          if (this.starGoodR2) this.starGoodR2.active = showR2;
         }
 
         // ==================== 公开方法 ====================
@@ -749,7 +1354,6 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
           if (!this._isCharging) return this._currentValue;
           this._isCharging = false;
           var grade = this.getGrade();
-          console.log("\u84C4\u529B\u503C: " + this._currentValue.toFixed(1) + ", \u7B49\u7EA7: " + grade);
           this.node.emit('power-charged', this._currentValue, grade);
           return this._currentValue;
         };
@@ -777,18 +1381,9 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
 
         _proto._updatePointerPosition = function _updatePointerPosition() {
           if (!this.barContainer) return;
-          // 指针位置
           if (this.pointer) {
             var x = this._currentValue / 100 * this._barWidth - this._barWidth / 2;
             this.pointer.setPosition(new Vec3(x, 0, 0));
-          }
-          // 填充条宽度（左边缘固定在 -barWidth/2）
-          if (this.fillBar) {
-            var t = this.fillBar.getComponent(UITransform);
-            if (t) {
-              t.width = this._currentValue / 100 * this._barWidth;
-            }
-            this.fillBar.setPosition(new Vec3(-this._barWidth / 2, 0, 0));
           }
         };
         _proto._updateGradeDisplay = function _updateGradeDisplay() {
@@ -844,70 +1439,56 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
         initializer: function initializer() {
           return 80;
         }
-      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, "useConfigFile", [_dec7], {
-        configurable: true,
-        enumerable: true,
-        writable: true,
-        initializer: function initializer() {
-          return true;
-        }
-      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "barContainer", [_dec8], {
+      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, "barContainer", [_dec7], {
         configurable: true,
         enumerable: true,
         writable: true,
         initializer: function initializer() {
           return null;
         }
-      }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, "pointer", [_dec9], {
+      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "pointer", [_dec8], {
         configurable: true,
         enumerable: true,
         writable: true,
         initializer: function initializer() {
           return null;
         }
-      }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, "fillBar", [_dec10], {
+      }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, "starPerfect", [_dec9], {
         configurable: true,
         enumerable: true,
         writable: true,
         initializer: function initializer() {
           return null;
         }
-      }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "gradeLabel", [_dec11], {
+      }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, "starGoodL1", [_dec10], {
         configurable: true,
         enumerable: true,
         writable: true,
         initializer: function initializer() {
           return null;
         }
-      }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "zoneMissLeft", [_dec12], {
+      }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "starGoodL2", [_dec11], {
         configurable: true,
         enumerable: true,
         writable: true,
         initializer: function initializer() {
           return null;
         }
-      }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, "zoneGoodLeft", [_dec13], {
+      }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "starGoodR1", [_dec12], {
         configurable: true,
         enumerable: true,
         writable: true,
         initializer: function initializer() {
           return null;
         }
-      }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, "zonePerfect", [_dec14], {
+      }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, "starGoodR2", [_dec13], {
         configurable: true,
         enumerable: true,
         writable: true,
         initializer: function initializer() {
           return null;
         }
-      }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, "zoneGoodRight", [_dec15], {
-        configurable: true,
-        enumerable: true,
-        writable: true,
-        initializer: function initializer() {
-          return null;
-        }
-      }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, "zoneMissRight", [_dec16], {
+      }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, "gradeLabel", [_dec14], {
         configurable: true,
         enumerable: true,
         writable: true,
