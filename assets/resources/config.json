@@ -1,0 +1,33 @@
+{
+    "importBase": "import",
+    "nativeBase": "native",
+    "name": "resources",
+    "deps": [],
+    "uuids": [
+        "86087fa8-7e52-453c-8032-52143cf80453",
+        "8a1a2591-7891-4dd8-94d8-d3a0dc65fc7e"
+    ],
+    "paths": {
+        "8a1a2591-7891-4dd8-94d8-d3a0dc65fc7e": [
+            "Config/GameConfig",
+            "cc.JsonAsset",
+            1
+        ],
+        "86087fa8-7e52-453c-8032-52143cf80453": [
+            "Config/PowerBarConfig",
+            "cc.JsonAsset",
+            1
+        ]
+    },
+    "scenes": {},
+    "packs": {},
+    "versions": {
+        "import": [],
+        "native": []
+    },
+    "redirect": [],
+    "debug": true,
+    "extensionMap": {},
+    "hasPreloadScript": true,
+    "dependencyRelationships": {}
+}

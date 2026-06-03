@@ -1,0 +1,145 @@
+{
+    "importBase": "import",
+    "nativeBase": "native",
+    "name": "main",
+    "deps": [],
+    "uuids": [
+        "06eb42885",
+        "07dbcca6b",
+        "091f5ad4-1c75-4bf2-8bee-0f372f88bd9c",
+        "0bc608d17",
+        "0d379db04",
+        "137e7b35-f6f2-4a51-a535-a96187c51d06",
+        "24a704da-2867-446d-8d1a-5e920c75e09d",
+        "24a704da-2867-446d-8d1a-5e920c75e09d@6c48a",
+        "24a704da-2867-446d-8d1a-5e920c75e09d@f9941",
+        "2df63a4e-6624-4365-9097-b3a6748a63d7",
+        "2df63a4e-6624-4365-9097-b3a6748a63d7@6c48a",
+        "2df63a4e-6624-4365-9097-b3a6748a63d7@f9941",
+        "34c42a2c-c875-41e5-9178-f34072d35007",
+        "34c42a2c-c875-41e5-9178-f34072d35007@6c48a",
+        "34c42a2c-c875-41e5-9178-f34072d35007@f9941",
+        "39c7269d-3e32-43c4-af21-2dd21ce58c99",
+        "39c7269d-3e32-43c4-af21-2dd21ce58c99@6c48a",
+        "39c7269d-3e32-43c4-af21-2dd21ce58c99@f9941",
+        "3e66fa44-7d03-4360-bfc0-beada7473e64",
+        "3e66fa44-7d03-4360-bfc0-beada7473e64@6c48a",
+        "3e66fa44-7d03-4360-bfc0-beada7473e64@f9941",
+        "5421d0d9-5a79-415f-9f6c-3a11ebc2371d",
+        "5421d0d9-5a79-415f-9f6c-3a11ebc2371d@6c48a",
+        "5421d0d9-5a79-415f-9f6c-3a11ebc2371d@f9941",
+        "5872605d-04a1-4cbb-bf3f-4a2f8fd4fb84",
+        "5872605d-04a1-4cbb-bf3f-4a2f8fd4fb84@6c48a",
+        "5872605d-04a1-4cbb-bf3f-4a2f8fd4fb84@f9941",
+        "64e39767-8197-4b8a-9371-e2d684886b08",
+        "64e39767-8197-4b8a-9371-e2d684886b08@6c48a",
+        "64e39767-8197-4b8a-9371-e2d684886b08@f9941",
+        "769c805f-3dbe-4e28-b66f-22927f129489",
+        "769c805f-3dbe-4e28-b66f-22927f129489@6c48a",
+        "769c805f-3dbe-4e28-b66f-22927f129489@f9941",
+        "7d8f9b89-4fd1-4c9f-a3ab-38ec7cded7ca",
+        "7d8f9b89-4fd1-4c9f-a3ab-38ec7cded7ca@6c48a",
+        "7d8f9b89-4fd1-4c9f-a3ab-38ec7cded7ca@f9941",
+        "89f2fc5d-96a0-4246-b73d-87af8c56a94c",
+        "96ecce26-b59d-4894-8bcf-e2ed5749c2d4",
+        "96ecce26-b59d-4894-8bcf-e2ed5749c2d4@6c48a",
+        "96ecce26-b59d-4894-8bcf-e2ed5749c2d4@f9941",
+        "9ba84adc-bf26-4905-8b0c-8ce329e4cd47",
+        "9ba84adc-bf26-4905-8b0c-8ce329e4cd47@6c48a",
+        "9ba84adc-bf26-4905-8b0c-8ce329e4cd47@f9941",
+        "9fd900dd-221b-4f89-8f2c-fba34243c835",
+        "9fd900dd-221b-4f89-8f2c-fba34243c835@6c48a",
+        "9fd900dd-221b-4f89-8f2c-fba34243c835@f9941",
+        "ba21476f-2866-4f81-9c4d-6e359316e448",
+        "d71884c3-754a-4a03-a59b-df7814fe3436",
+        "d71884c3-754a-4a03-a59b-df7814fe3436@6c48a",
+        "d71884c3-754a-4a03-a59b-df7814fe3436@f9941",
+        "e0d3fdaf-2df4-416b-b8d6-507148915d36",
+        "e0d3fdaf-2df4-416b-b8d6-507148915d36@6c48a",
+        "e0d3fdaf-2df4-416b-b8d6-507148915d36@f9941",
+        "f0f8c83c-daee-40de-9f0d-98c2ecbb09cb",
+        "f0f8c83c-daee-40de-9f0d-98c2ecbb09cb@6c48a",
+        "f0f8c83c-daee-40de-9f0d-98c2ecbb09cb@f9941",
+        "fd8ec536-a354-4a17-9c74-4f3883c378c8"
+    ],
+    "paths": {
+        "137e7b35-f6f2-4a51-a535-a96187c51d06": [
+            "db:/assets/scenes/game_scene",
+            "cc.SceneAsset",
+            1
+        ],
+        "89f2fc5d-96a0-4246-b73d-87af8c56a94c": [
+            "db:/assets/scenes/Start_scene",
+            "cc.SceneAsset",
+            1
+        ],
+        "fd8ec536-a354-4a17-9c74-4f3883c378c8": [
+            "db:/internal/default_renderpipeline/builtin-forward",
+            "cc.RenderPipeline",
+            1
+        ],
+        "ba21476f-2866-4f81-9c4d-6e359316e448": [
+            "db:/internal/physics/default-physics-material",
+            "cc.PhysicsMaterial",
+            1
+        ]
+    },
+    "scenes": {
+        "db://assets/scenes/game_scene.scene": "137e7b35-f6f2-4a51-a535-a96187c51d06",
+        "db://assets/scenes/Start_scene.scene": "89f2fc5d-96a0-4246-b73d-87af8c56a94c"
+    },
+    "packs": {
+        "0bc608d17": [
+            "2df63a4e-6624-4365-9097-b3a6748a63d7@6c48a",
+            "3e66fa44-7d03-4360-bfc0-beada7473e64@6c48a",
+            "7d8f9b89-4fd1-4c9f-a3ab-38ec7cded7ca@6c48a",
+            "9ba84adc-bf26-4905-8b0c-8ce329e4cd47@6c48a",
+            "9fd900dd-221b-4f89-8f2c-fba34243c835@6c48a",
+            "24a704da-2867-446d-8d1a-5e920c75e09d@6c48a",
+            "34c42a2c-c875-41e5-9178-f34072d35007@6c48a",
+            "39c7269d-3e32-43c4-af21-2dd21ce58c99@6c48a",
+            "64e39767-8197-4b8a-9371-e2d684886b08@6c48a",
+            "96ecce26-b59d-4894-8bcf-e2ed5749c2d4@6c48a",
+            "769c805f-3dbe-4e28-b66f-22927f129489@6c48a",
+            "5421d0d9-5a79-415f-9f6c-3a11ebc2371d@6c48a",
+            "5872605d-04a1-4cbb-bf3f-4a2f8fd4fb84@6c48a",
+            "d71884c3-754a-4a03-a59b-df7814fe3436@6c48a",
+            "e0d3fdaf-2df4-416b-b8d6-507148915d36@6c48a",
+            "f0f8c83c-daee-40de-9f0d-98c2ecbb09cb@6c48a"
+        ],
+        "06eb42885": [
+            "091f5ad4-1c75-4bf2-8bee-0f372f88bd9c",
+            "5421d0d9-5a79-415f-9f6c-3a11ebc2371d@f9941"
+        ],
+        "0d379db04": [
+            "137e7b35-f6f2-4a51-a535-a96187c51d06",
+            "24a704da-2867-446d-8d1a-5e920c75e09d@f9941",
+            "2df63a4e-6624-4365-9097-b3a6748a63d7@f9941",
+            "3e66fa44-7d03-4360-bfc0-beada7473e64@f9941",
+            "5872605d-04a1-4cbb-bf3f-4a2f8fd4fb84@f9941",
+            "64e39767-8197-4b8a-9371-e2d684886b08@f9941",
+            "769c805f-3dbe-4e28-b66f-22927f129489@f9941",
+            "7d8f9b89-4fd1-4c9f-a3ab-38ec7cded7ca@f9941",
+            "96ecce26-b59d-4894-8bcf-e2ed5749c2d4@f9941",
+            "9ba84adc-bf26-4905-8b0c-8ce329e4cd47@f9941",
+            "9fd900dd-221b-4f89-8f2c-fba34243c835@f9941",
+            "e0d3fdaf-2df4-416b-b8d6-507148915d36@f9941",
+            "f0f8c83c-daee-40de-9f0d-98c2ecbb09cb@f9941"
+        ],
+        "07dbcca6b": [
+            "34c42a2c-c875-41e5-9178-f34072d35007@f9941",
+            "39c7269d-3e32-43c4-af21-2dd21ce58c99@f9941",
+            "89f2fc5d-96a0-4246-b73d-87af8c56a94c",
+            "d71884c3-754a-4a03-a59b-df7814fe3436@f9941"
+        ]
+    },
+    "versions": {
+        "import": [],
+        "native": []
+    },
+    "redirect": [],
+    "debug": true,
+    "extensionMap": {},
+    "hasPreloadScript": true,
+    "dependencyRelationships": {}
+}
