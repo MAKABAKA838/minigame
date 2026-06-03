@@ -4,10 +4,138 @@
     "name": "resources",
     "deps": [],
     "uuids": [
+        "01a11e78-29c8-42da-85d8-825a7cea5f5a",
+        "01a11e78-29c8-42da-85d8-825a7cea5f5a@6c48a",
+        "01a11e78-29c8-42da-85d8-825a7cea5f5a@f9941",
+        "01bf02adb",
+        "07002b8e-0e62-47cd-9f21-11e33ea61ff2",
+        "07002b8e-0e62-47cd-9f21-11e33ea61ff2@6c48a",
+        "07002b8e-0e62-47cd-9f21-11e33ea61ff2@f9941",
+        "0c7edc01-8efb-4613-9a84-cc6498e2f505",
+        "0c7edc01-8efb-4613-9a84-cc6498e2f505@6c48a",
+        "0c7edc01-8efb-4613-9a84-cc6498e2f505@f9941",
+        "10e8c517-a41c-4205-8af4-325477a7411f",
+        "10e8c517-a41c-4205-8af4-325477a7411f@6c48a",
+        "10e8c517-a41c-4205-8af4-325477a7411f@f9941",
+        "11acb68d-2961-434c-8b49-070820d25844",
+        "166ae7d1-29b9-41fe-937f-ce776d3552a2",
+        "166ae7d1-29b9-41fe-937f-ce776d3552a2@6c48a",
+        "166ae7d1-29b9-41fe-937f-ce776d3552a2@f9941",
+        "25cb58ee-e2f6-4436-a593-38373380f1b6",
+        "25cb58ee-e2f6-4436-a593-38373380f1b6@6c48a",
+        "25cb58ee-e2f6-4436-a593-38373380f1b6@f9941",
+        "2da772a9-570f-4a96-aa96-b392492f25a6",
+        "2da772a9-570f-4a96-aa96-b392492f25a6@6c48a",
+        "2da772a9-570f-4a96-aa96-b392492f25a6@f9941",
+        "2ebc55fc-f276-41b9-a5f3-6e9ada854550",
+        "2ebc55fc-f276-41b9-a5f3-6e9ada854550@6c48a",
+        "2ebc55fc-f276-41b9-a5f3-6e9ada854550@f9941",
+        "3c8d1990-a10b-4206-8e98-88fdbec65ec9",
+        "3c8d1990-a10b-4206-8e98-88fdbec65ec9@6c48a",
+        "3c8d1990-a10b-4206-8e98-88fdbec65ec9@f9941",
+        "45a8b6bd-1297-44cc-a27e-4f9d16484272",
+        "45a8b6bd-1297-44cc-a27e-4f9d16484272@6c48a",
+        "45a8b6bd-1297-44cc-a27e-4f9d16484272@f9941",
+        "471e0f6d-abad-45f5-a71e-c8a2ff3fee29",
+        "471e0f6d-abad-45f5-a71e-c8a2ff3fee29@6c48a",
+        "471e0f6d-abad-45f5-a71e-c8a2ff3fee29@f9941",
+        "488f059e-212d-42e1-95ae-510cca07f2a2",
+        "488f059e-212d-42e1-95ae-510cca07f2a2@6c48a",
+        "488f059e-212d-42e1-95ae-510cca07f2a2@f9941",
+        "49f9f71d-f7c5-4c82-b76f-cbc10f2a6ac6",
+        "49f9f71d-f7c5-4c82-b76f-cbc10f2a6ac6@6c48a",
+        "49f9f71d-f7c5-4c82-b76f-cbc10f2a6ac6@f9941",
+        "55bd7c81-41b0-4d3a-9708-f343356367a7",
+        "55bd7c81-41b0-4d3a-9708-f343356367a7@6c48a",
+        "55bd7c81-41b0-4d3a-9708-f343356367a7@f9941",
+        "58fdc6d5-da9c-4402-b2f7-a844d93eb436",
+        "58fdc6d5-da9c-4402-b2f7-a844d93eb436@6c48a",
+        "58fdc6d5-da9c-4402-b2f7-a844d93eb436@f9941",
+        "6335597f-f197-4819-88ca-cd82955430f6",
+        "6335597f-f197-4819-88ca-cd82955430f6@6c48a",
+        "6335597f-f197-4819-88ca-cd82955430f6@f9941",
+        "69e964e3-6c28-4e84-b298-a5d848420c65",
+        "69e964e3-6c28-4e84-b298-a5d848420c65@6c48a",
+        "69e964e3-6c28-4e84-b298-a5d848420c65@f9941",
+        "6ee958bf-7578-4842-81f3-8d37aeeb491c",
+        "6ee958bf-7578-4842-81f3-8d37aeeb491c@6c48a",
+        "6ee958bf-7578-4842-81f3-8d37aeeb491c@f9941",
+        "7559e9f6-df2e-4ad1-bc9e-848926ed4f8f",
+        "7559e9f6-df2e-4ad1-bc9e-848926ed4f8f@6c48a",
+        "7559e9f6-df2e-4ad1-bc9e-848926ed4f8f@f9941",
+        "7e0152c5-6fdc-4a81-990b-4006ac85adc6",
+        "7e0152c5-6fdc-4a81-990b-4006ac85adc6@6c48a",
+        "7e0152c5-6fdc-4a81-990b-4006ac85adc6@f9941",
         "86087fa8-7e52-453c-8032-52143cf80453",
-        "8a1a2591-7891-4dd8-94d8-d3a0dc65fc7e"
+        "89aaafa3-6985-4a07-a0ab-f2512c0f1896",
+        "8a1a2591-7891-4dd8-94d8-d3a0dc65fc7e",
+        "8dbaf3bc-00b9-4cda-b5d3-a9b5fdc77ba3",
+        "8dbaf3bc-00b9-4cda-b5d3-a9b5fdc77ba3@6c48a",
+        "8dbaf3bc-00b9-4cda-b5d3-a9b5fdc77ba3@f9941",
+        "9cd2cfe6-e0fb-4473-b35c-d06e060e9869",
+        "9cd2cfe6-e0fb-4473-b35c-d06e060e9869@6c48a",
+        "9cd2cfe6-e0fb-4473-b35c-d06e060e9869@f9941",
+        "9fd23fc0-a371-437a-b904-81b31eb538c5",
+        "9fd23fc0-a371-437a-b904-81b31eb538c5@6c48a",
+        "9fd23fc0-a371-437a-b904-81b31eb538c5@f9941",
+        "a6a169fe-7cbb-48f0-af89-6171b7d984eb",
+        "a6a169fe-7cbb-48f0-af89-6171b7d984eb@6c48a",
+        "a6a169fe-7cbb-48f0-af89-6171b7d984eb@f9941",
+        "ab1f65aa-eab6-4d9c-810d-77050c7a4ea6",
+        "ab1f65aa-eab6-4d9c-810d-77050c7a4ea6@6c48a",
+        "ab1f65aa-eab6-4d9c-810d-77050c7a4ea6@f9941",
+        "abefc2a8-9147-4420-a637-cfeee759568b",
+        "abefc2a8-9147-4420-a637-cfeee759568b@6c48a",
+        "abefc2a8-9147-4420-a637-cfeee759568b@f9941",
+        "aebfaddb-cd6d-4ff5-a1b5-0d3f63dd5ae2",
+        "aebfaddb-cd6d-4ff5-a1b5-0d3f63dd5ae2@6c48a",
+        "aebfaddb-cd6d-4ff5-a1b5-0d3f63dd5ae2@f9941",
+        "af65004b-b3ad-487a-b5fa-809787f2d7bf",
+        "af65004b-b3ad-487a-b5fa-809787f2d7bf@6c48a",
+        "af65004b-b3ad-487a-b5fa-809787f2d7bf@f9941",
+        "af9295b0-0cca-45a9-a9ce-9e3038006cf1",
+        "af9295b0-0cca-45a9-a9ce-9e3038006cf1@6c48a",
+        "af9295b0-0cca-45a9-a9ce-9e3038006cf1@f9941",
+        "b801b769-f34c-4e89-8171-a73997599319",
+        "b801b769-f34c-4e89-8171-a73997599319@6c48a",
+        "b801b769-f34c-4e89-8171-a73997599319@f9941",
+        "bd3d8b5d-d061-4e04-94cf-823e390b91d4",
+        "bd3d8b5d-d061-4e04-94cf-823e390b91d4@6c48a",
+        "bd3d8b5d-d061-4e04-94cf-823e390b91d4@f9941",
+        "ca4d2c14-a367-4104-ad5c-724fd5bf3294",
+        "ca4d2c14-a367-4104-ad5c-724fd5bf3294@6c48a",
+        "ca4d2c14-a367-4104-ad5c-724fd5bf3294@f9941",
+        "cfad2122-0e70-41d6-b5c7-8315c51b8278",
+        "cfad2122-0e70-41d6-b5c7-8315c51b8278@6c48a",
+        "cfad2122-0e70-41d6-b5c7-8315c51b8278@f9941",
+        "d5dc470f-7561-4a6a-8ad8-7637e5a4d8c7",
+        "d5dc470f-7561-4a6a-8ad8-7637e5a4d8c7@6c48a",
+        "d5dc470f-7561-4a6a-8ad8-7637e5a4d8c7@f9941",
+        "dc9cb92a-1d1a-4051-85f4-95138e862bbb",
+        "dc9cb92a-1d1a-4051-85f4-95138e862bbb@6c48a",
+        "dc9cb92a-1d1a-4051-85f4-95138e862bbb@f9941",
+        "eb9062d0-8a5e-44a5-984f-eca7620ec52a",
+        "eb9062d0-8a5e-44a5-984f-eca7620ec52a@6c48a",
+        "eb9062d0-8a5e-44a5-984f-eca7620ec52a@f9941",
+        "ebcbf4d9-c017-457b-8661-03d05459ea82",
+        "ebcbf4d9-c017-457b-8661-03d05459ea82@6c48a",
+        "ebcbf4d9-c017-457b-8661-03d05459ea82@f9941",
+        "ed0454b3-b52a-449a-b2d2-662b18549613",
+        "ed0454b3-b52a-449a-b2d2-662b18549613@6c48a",
+        "ed0454b3-b52a-449a-b2d2-662b18549613@f9941",
+        "ee034afb-56a9-44db-915c-04e0e52841d2",
+        "ee034afb-56a9-44db-915c-04e0e52841d2@6c48a",
+        "ee034afb-56a9-44db-915c-04e0e52841d2@f9941",
+        "f73d9e1d-1f5d-4475-b147-94591f6f2528",
+        "f73d9e1d-1f5d-4475-b147-94591f6f2528@6c48a",
+        "f73d9e1d-1f5d-4475-b147-94591f6f2528@f9941"
     ],
     "paths": {
+        "89aaafa3-6985-4a07-a0ab-f2512c0f1896": [
+            "Animation/miss",
+            "cc.VideoClip",
+            1
+        ],
         "8a1a2591-7891-4dd8-94d8-d3a0dc65fc7e": [
             "Config/GameConfig",
             "cc.JsonAsset",
@@ -17,17 +145,669 @@
             "Config/PowerBarConfig",
             "cc.JsonAsset",
             1
+        ],
+        "11acb68d-2961-434c-8b49-070820d25844": [
+            "Animation/missed UI动效/animation",
+            "cc.AnimationClip",
+            1
+        ],
+        "8dbaf3bc-00b9-4cda-b5d3-a9b5fdc77ba3": [
+            "Animation/missed UI动效/missedUI0001",
+            "cc.ImageAsset",
+            1
+        ],
+        "8dbaf3bc-00b9-4cda-b5d3-a9b5fdc77ba3@6c48a": [
+            "Animation/missed UI动效/missedUI0001/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "8dbaf3bc-00b9-4cda-b5d3-a9b5fdc77ba3@f9941": [
+            "Animation/missed UI动效/missedUI0001/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "3c8d1990-a10b-4206-8e98-88fdbec65ec9": [
+            "Animation/missed UI动效/missedUI0002",
+            "cc.ImageAsset",
+            1
+        ],
+        "3c8d1990-a10b-4206-8e98-88fdbec65ec9@6c48a": [
+            "Animation/missed UI动效/missedUI0002/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "3c8d1990-a10b-4206-8e98-88fdbec65ec9@f9941": [
+            "Animation/missed UI动效/missedUI0002/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "ebcbf4d9-c017-457b-8661-03d05459ea82": [
+            "Animation/missed UI动效/missedUI0003",
+            "cc.ImageAsset",
+            1
+        ],
+        "ebcbf4d9-c017-457b-8661-03d05459ea82@6c48a": [
+            "Animation/missed UI动效/missedUI0003/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "ebcbf4d9-c017-457b-8661-03d05459ea82@f9941": [
+            "Animation/missed UI动效/missedUI0003/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "7559e9f6-df2e-4ad1-bc9e-848926ed4f8f": [
+            "Animation/missed UI动效/missedUI0004",
+            "cc.ImageAsset",
+            1
+        ],
+        "7559e9f6-df2e-4ad1-bc9e-848926ed4f8f@6c48a": [
+            "Animation/missed UI动效/missedUI0004/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "7559e9f6-df2e-4ad1-bc9e-848926ed4f8f@f9941": [
+            "Animation/missed UI动效/missedUI0004/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "dc9cb92a-1d1a-4051-85f4-95138e862bbb": [
+            "Animation/missed UI动效/missedUI0005",
+            "cc.ImageAsset",
+            1
+        ],
+        "dc9cb92a-1d1a-4051-85f4-95138e862bbb@6c48a": [
+            "Animation/missed UI动效/missedUI0005/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "dc9cb92a-1d1a-4051-85f4-95138e862bbb@f9941": [
+            "Animation/missed UI动效/missedUI0005/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "bd3d8b5d-d061-4e04-94cf-823e390b91d4": [
+            "Animation/missed UI动效/missedUI0006",
+            "cc.ImageAsset",
+            1
+        ],
+        "bd3d8b5d-d061-4e04-94cf-823e390b91d4@6c48a": [
+            "Animation/missed UI动效/missedUI0006/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "bd3d8b5d-d061-4e04-94cf-823e390b91d4@f9941": [
+            "Animation/missed UI动效/missedUI0006/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "166ae7d1-29b9-41fe-937f-ce776d3552a2": [
+            "Animation/missed UI动效/missedUI0007",
+            "cc.ImageAsset",
+            1
+        ],
+        "166ae7d1-29b9-41fe-937f-ce776d3552a2@6c48a": [
+            "Animation/missed UI动效/missedUI0007/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "166ae7d1-29b9-41fe-937f-ce776d3552a2@f9941": [
+            "Animation/missed UI动效/missedUI0007/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "ca4d2c14-a367-4104-ad5c-724fd5bf3294": [
+            "Animation/missed UI动效/missedUI0008",
+            "cc.ImageAsset",
+            1
+        ],
+        "ca4d2c14-a367-4104-ad5c-724fd5bf3294@6c48a": [
+            "Animation/missed UI动效/missedUI0008/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "ca4d2c14-a367-4104-ad5c-724fd5bf3294@f9941": [
+            "Animation/missed UI动效/missedUI0008/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "ab1f65aa-eab6-4d9c-810d-77050c7a4ea6": [
+            "Animation/missed UI动效/missedUI0009",
+            "cc.ImageAsset",
+            1
+        ],
+        "ab1f65aa-eab6-4d9c-810d-77050c7a4ea6@6c48a": [
+            "Animation/missed UI动效/missedUI0009/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "ab1f65aa-eab6-4d9c-810d-77050c7a4ea6@f9941": [
+            "Animation/missed UI动效/missedUI0009/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "471e0f6d-abad-45f5-a71e-c8a2ff3fee29": [
+            "Animation/missed UI动效/missedUI0010",
+            "cc.ImageAsset",
+            1
+        ],
+        "471e0f6d-abad-45f5-a71e-c8a2ff3fee29@6c48a": [
+            "Animation/missed UI动效/missedUI0010/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "471e0f6d-abad-45f5-a71e-c8a2ff3fee29@f9941": [
+            "Animation/missed UI动效/missedUI0010/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "0c7edc01-8efb-4613-9a84-cc6498e2f505": [
+            "Animation/missed UI动效/missedUI0011",
+            "cc.ImageAsset",
+            1
+        ],
+        "0c7edc01-8efb-4613-9a84-cc6498e2f505@6c48a": [
+            "Animation/missed UI动效/missedUI0011/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "0c7edc01-8efb-4613-9a84-cc6498e2f505@f9941": [
+            "Animation/missed UI动效/missedUI0011/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "488f059e-212d-42e1-95ae-510cca07f2a2": [
+            "Animation/missed UI动效/missedUI0012",
+            "cc.ImageAsset",
+            1
+        ],
+        "488f059e-212d-42e1-95ae-510cca07f2a2@6c48a": [
+            "Animation/missed UI动效/missedUI0012/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "488f059e-212d-42e1-95ae-510cca07f2a2@f9941": [
+            "Animation/missed UI动效/missedUI0012/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "10e8c517-a41c-4205-8af4-325477a7411f": [
+            "Animation/missed UI动效/missedUI0013",
+            "cc.ImageAsset",
+            1
+        ],
+        "10e8c517-a41c-4205-8af4-325477a7411f@6c48a": [
+            "Animation/missed UI动效/missedUI0013/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "10e8c517-a41c-4205-8af4-325477a7411f@f9941": [
+            "Animation/missed UI动效/missedUI0013/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "abefc2a8-9147-4420-a637-cfeee759568b": [
+            "Animation/missed UI动效/missedUI0014",
+            "cc.ImageAsset",
+            1
+        ],
+        "abefc2a8-9147-4420-a637-cfeee759568b@6c48a": [
+            "Animation/missed UI动效/missedUI0014/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "abefc2a8-9147-4420-a637-cfeee759568b@f9941": [
+            "Animation/missed UI动效/missedUI0014/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "9fd23fc0-a371-437a-b904-81b31eb538c5": [
+            "Animation/missed UI动效/missedUI0015",
+            "cc.ImageAsset",
+            1
+        ],
+        "9fd23fc0-a371-437a-b904-81b31eb538c5@6c48a": [
+            "Animation/missed UI动效/missedUI0015/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "9fd23fc0-a371-437a-b904-81b31eb538c5@f9941": [
+            "Animation/missed UI动效/missedUI0015/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "ed0454b3-b52a-449a-b2d2-662b18549613": [
+            "Animation/missed UI动效/missedUI0016",
+            "cc.ImageAsset",
+            1
+        ],
+        "ed0454b3-b52a-449a-b2d2-662b18549613@6c48a": [
+            "Animation/missed UI动效/missedUI0016/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "ed0454b3-b52a-449a-b2d2-662b18549613@f9941": [
+            "Animation/missed UI动效/missedUI0016/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "69e964e3-6c28-4e84-b298-a5d848420c65": [
+            "Animation/missed UI动效/missedUI0017",
+            "cc.ImageAsset",
+            1
+        ],
+        "69e964e3-6c28-4e84-b298-a5d848420c65@6c48a": [
+            "Animation/missed UI动效/missedUI0017/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "69e964e3-6c28-4e84-b298-a5d848420c65@f9941": [
+            "Animation/missed UI动效/missedUI0017/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "af65004b-b3ad-487a-b5fa-809787f2d7bf": [
+            "Animation/missed UI动效/missedUI0018",
+            "cc.ImageAsset",
+            1
+        ],
+        "af65004b-b3ad-487a-b5fa-809787f2d7bf@6c48a": [
+            "Animation/missed UI动效/missedUI0018/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "af65004b-b3ad-487a-b5fa-809787f2d7bf@f9941": [
+            "Animation/missed UI动效/missedUI0018/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "07002b8e-0e62-47cd-9f21-11e33ea61ff2": [
+            "Animation/missed UI动效/missedUI0019",
+            "cc.ImageAsset",
+            1
+        ],
+        "07002b8e-0e62-47cd-9f21-11e33ea61ff2@6c48a": [
+            "Animation/missed UI动效/missedUI0019/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "07002b8e-0e62-47cd-9f21-11e33ea61ff2@f9941": [
+            "Animation/missed UI动效/missedUI0019/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "55bd7c81-41b0-4d3a-9708-f343356367a7": [
+            "Animation/missed UI动效/missedUI0020",
+            "cc.ImageAsset",
+            1
+        ],
+        "55bd7c81-41b0-4d3a-9708-f343356367a7@6c48a": [
+            "Animation/missed UI动效/missedUI0020/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "55bd7c81-41b0-4d3a-9708-f343356367a7@f9941": [
+            "Animation/missed UI动效/missedUI0020/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "a6a169fe-7cbb-48f0-af89-6171b7d984eb": [
+            "Animation/prefect UI/perfectUI0001",
+            "cc.ImageAsset",
+            1
+        ],
+        "a6a169fe-7cbb-48f0-af89-6171b7d984eb@6c48a": [
+            "Animation/prefect UI/perfectUI0001/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "a6a169fe-7cbb-48f0-af89-6171b7d984eb@f9941": [
+            "Animation/prefect UI/perfectUI0001/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "9cd2cfe6-e0fb-4473-b35c-d06e060e9869": [
+            "Animation/prefect UI/perfectUI0002",
+            "cc.ImageAsset",
+            1
+        ],
+        "9cd2cfe6-e0fb-4473-b35c-d06e060e9869@6c48a": [
+            "Animation/prefect UI/perfectUI0002/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "9cd2cfe6-e0fb-4473-b35c-d06e060e9869@f9941": [
+            "Animation/prefect UI/perfectUI0002/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "2ebc55fc-f276-41b9-a5f3-6e9ada854550": [
+            "Animation/prefect UI/perfectUI0003",
+            "cc.ImageAsset",
+            1
+        ],
+        "2ebc55fc-f276-41b9-a5f3-6e9ada854550@6c48a": [
+            "Animation/prefect UI/perfectUI0003/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "2ebc55fc-f276-41b9-a5f3-6e9ada854550@f9941": [
+            "Animation/prefect UI/perfectUI0003/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "58fdc6d5-da9c-4402-b2f7-a844d93eb436": [
+            "Animation/prefect UI/perfectUI0004",
+            "cc.ImageAsset",
+            1
+        ],
+        "58fdc6d5-da9c-4402-b2f7-a844d93eb436@6c48a": [
+            "Animation/prefect UI/perfectUI0004/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "58fdc6d5-da9c-4402-b2f7-a844d93eb436@f9941": [
+            "Animation/prefect UI/perfectUI0004/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "49f9f71d-f7c5-4c82-b76f-cbc10f2a6ac6": [
+            "Animation/prefect UI/perfectUI0005",
+            "cc.ImageAsset",
+            1
+        ],
+        "49f9f71d-f7c5-4c82-b76f-cbc10f2a6ac6@6c48a": [
+            "Animation/prefect UI/perfectUI0005/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "49f9f71d-f7c5-4c82-b76f-cbc10f2a6ac6@f9941": [
+            "Animation/prefect UI/perfectUI0005/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "6ee958bf-7578-4842-81f3-8d37aeeb491c": [
+            "Animation/prefect UI/perfectUI0006",
+            "cc.ImageAsset",
+            1
+        ],
+        "6ee958bf-7578-4842-81f3-8d37aeeb491c@6c48a": [
+            "Animation/prefect UI/perfectUI0006/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "6ee958bf-7578-4842-81f3-8d37aeeb491c@f9941": [
+            "Animation/prefect UI/perfectUI0006/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "6335597f-f197-4819-88ca-cd82955430f6": [
+            "Animation/prefect UI/perfectUI0007",
+            "cc.ImageAsset",
+            1
+        ],
+        "6335597f-f197-4819-88ca-cd82955430f6@6c48a": [
+            "Animation/prefect UI/perfectUI0007/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "6335597f-f197-4819-88ca-cd82955430f6@f9941": [
+            "Animation/prefect UI/perfectUI0007/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "af9295b0-0cca-45a9-a9ce-9e3038006cf1": [
+            "Animation/prefect UI/perfectUI0008",
+            "cc.ImageAsset",
+            1
+        ],
+        "af9295b0-0cca-45a9-a9ce-9e3038006cf1@6c48a": [
+            "Animation/prefect UI/perfectUI0008/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "af9295b0-0cca-45a9-a9ce-9e3038006cf1@f9941": [
+            "Animation/prefect UI/perfectUI0008/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "cfad2122-0e70-41d6-b5c7-8315c51b8278": [
+            "Animation/prefect UI/perfectUI0009",
+            "cc.ImageAsset",
+            1
+        ],
+        "cfad2122-0e70-41d6-b5c7-8315c51b8278@6c48a": [
+            "Animation/prefect UI/perfectUI0009/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "cfad2122-0e70-41d6-b5c7-8315c51b8278@f9941": [
+            "Animation/prefect UI/perfectUI0009/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "01a11e78-29c8-42da-85d8-825a7cea5f5a": [
+            "Animation/prefect UI/perfectUI0010",
+            "cc.ImageAsset",
+            1
+        ],
+        "01a11e78-29c8-42da-85d8-825a7cea5f5a@6c48a": [
+            "Animation/prefect UI/perfectUI0010/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "01a11e78-29c8-42da-85d8-825a7cea5f5a@f9941": [
+            "Animation/prefect UI/perfectUI0010/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "d5dc470f-7561-4a6a-8ad8-7637e5a4d8c7": [
+            "Animation/prefect UI/perfectUI0011",
+            "cc.ImageAsset",
+            1
+        ],
+        "d5dc470f-7561-4a6a-8ad8-7637e5a4d8c7@6c48a": [
+            "Animation/prefect UI/perfectUI0011/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "d5dc470f-7561-4a6a-8ad8-7637e5a4d8c7@f9941": [
+            "Animation/prefect UI/perfectUI0011/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "ee034afb-56a9-44db-915c-04e0e52841d2": [
+            "Animation/prefect UI/perfectUI0012",
+            "cc.ImageAsset",
+            1
+        ],
+        "ee034afb-56a9-44db-915c-04e0e52841d2@6c48a": [
+            "Animation/prefect UI/perfectUI0012/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "ee034afb-56a9-44db-915c-04e0e52841d2@f9941": [
+            "Animation/prefect UI/perfectUI0012/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "aebfaddb-cd6d-4ff5-a1b5-0d3f63dd5ae2": [
+            "Animation/prefect UI/perfectUI0013",
+            "cc.ImageAsset",
+            1
+        ],
+        "aebfaddb-cd6d-4ff5-a1b5-0d3f63dd5ae2@6c48a": [
+            "Animation/prefect UI/perfectUI0013/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "aebfaddb-cd6d-4ff5-a1b5-0d3f63dd5ae2@f9941": [
+            "Animation/prefect UI/perfectUI0013/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "25cb58ee-e2f6-4436-a593-38373380f1b6": [
+            "Animation/prefect UI/perfectUI0014",
+            "cc.ImageAsset",
+            1
+        ],
+        "25cb58ee-e2f6-4436-a593-38373380f1b6@6c48a": [
+            "Animation/prefect UI/perfectUI0014/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "25cb58ee-e2f6-4436-a593-38373380f1b6@f9941": [
+            "Animation/prefect UI/perfectUI0014/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "7e0152c5-6fdc-4a81-990b-4006ac85adc6": [
+            "Animation/prefect UI/perfectUI0015",
+            "cc.ImageAsset",
+            1
+        ],
+        "7e0152c5-6fdc-4a81-990b-4006ac85adc6@6c48a": [
+            "Animation/prefect UI/perfectUI0015/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "7e0152c5-6fdc-4a81-990b-4006ac85adc6@f9941": [
+            "Animation/prefect UI/perfectUI0015/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "f73d9e1d-1f5d-4475-b147-94591f6f2528": [
+            "Animation/prefect UI/perfectUI0016",
+            "cc.ImageAsset",
+            1
+        ],
+        "f73d9e1d-1f5d-4475-b147-94591f6f2528@6c48a": [
+            "Animation/prefect UI/perfectUI0016/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "f73d9e1d-1f5d-4475-b147-94591f6f2528@f9941": [
+            "Animation/prefect UI/perfectUI0016/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "2da772a9-570f-4a96-aa96-b392492f25a6": [
+            "Animation/prefect UI/perfectUI0017",
+            "cc.ImageAsset",
+            1
+        ],
+        "2da772a9-570f-4a96-aa96-b392492f25a6@6c48a": [
+            "Animation/prefect UI/perfectUI0017/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "2da772a9-570f-4a96-aa96-b392492f25a6@f9941": [
+            "Animation/prefect UI/perfectUI0017/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "eb9062d0-8a5e-44a5-984f-eca7620ec52a": [
+            "Animation/prefect UI/perfectUI0018",
+            "cc.ImageAsset",
+            1
+        ],
+        "eb9062d0-8a5e-44a5-984f-eca7620ec52a@6c48a": [
+            "Animation/prefect UI/perfectUI0018/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "eb9062d0-8a5e-44a5-984f-eca7620ec52a@f9941": [
+            "Animation/prefect UI/perfectUI0018/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "b801b769-f34c-4e89-8171-a73997599319": [
+            "Animation/prefect UI/perfectUI0019",
+            "cc.ImageAsset",
+            1
+        ],
+        "b801b769-f34c-4e89-8171-a73997599319@6c48a": [
+            "Animation/prefect UI/perfectUI0019/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "b801b769-f34c-4e89-8171-a73997599319@f9941": [
+            "Animation/prefect UI/perfectUI0019/spriteFrame",
+            "cc.SpriteFrame",
+            1
+        ],
+        "45a8b6bd-1297-44cc-a27e-4f9d16484272": [
+            "Animation/prefect UI/perfectUI0020",
+            "cc.ImageAsset",
+            1
+        ],
+        "45a8b6bd-1297-44cc-a27e-4f9d16484272@6c48a": [
+            "Animation/prefect UI/perfectUI0020/texture",
+            "cc.Texture2D",
+            1
+        ],
+        "45a8b6bd-1297-44cc-a27e-4f9d16484272@f9941": [
+            "Animation/prefect UI/perfectUI0020/spriteFrame",
+            "cc.SpriteFrame",
+            1
         ]
     },
     "scenes": {},
-    "packs": {},
+    "packs": {
+        "01bf02adb": [
+            "0c7edc01-8efb-4613-9a84-cc6498e2f505@6c48a",
+            "01a11e78-29c8-42da-85d8-825a7cea5f5a@6c48a",
+            "2da772a9-570f-4a96-aa96-b392492f25a6@6c48a",
+            "2ebc55fc-f276-41b9-a5f3-6e9ada854550@6c48a",
+            "3c8d1990-a10b-4206-8e98-88fdbec65ec9@6c48a",
+            "6ee958bf-7578-4842-81f3-8d37aeeb491c@6c48a",
+            "7e0152c5-6fdc-4a81-990b-4006ac85adc6@6c48a",
+            "8dbaf3bc-00b9-4cda-b5d3-a9b5fdc77ba3@6c48a",
+            "9cd2cfe6-e0fb-4473-b35c-d06e060e9869@6c48a",
+            "9fd23fc0-a371-437a-b904-81b31eb538c5@6c48a",
+            "10e8c517-a41c-4205-8af4-325477a7411f@6c48a",
+            "25cb58ee-e2f6-4436-a593-38373380f1b6@6c48a",
+            "45a8b6bd-1297-44cc-a27e-4f9d16484272@6c48a",
+            "49f9f71d-f7c5-4c82-b76f-cbc10f2a6ac6@6c48a",
+            "55bd7c81-41b0-4d3a-9708-f343356367a7@6c48a",
+            "58fdc6d5-da9c-4402-b2f7-a844d93eb436@6c48a",
+            "69e964e3-6c28-4e84-b298-a5d848420c65@6c48a",
+            "166ae7d1-29b9-41fe-937f-ce776d3552a2@6c48a",
+            "471e0f6d-abad-45f5-a71e-c8a2ff3fee29@6c48a",
+            "488f059e-212d-42e1-95ae-510cca07f2a2@6c48a",
+            "07002b8e-0e62-47cd-9f21-11e33ea61ff2@6c48a",
+            "7559e9f6-df2e-4ad1-bc9e-848926ed4f8f@6c48a",
+            "6335597f-f197-4819-88ca-cd82955430f6@6c48a",
+            "a6a169fe-7cbb-48f0-af89-6171b7d984eb@6c48a",
+            "ab1f65aa-eab6-4d9c-810d-77050c7a4ea6@6c48a",
+            "abefc2a8-9147-4420-a637-cfeee759568b@6c48a",
+            "aebfaddb-cd6d-4ff5-a1b5-0d3f63dd5ae2@6c48a",
+            "af9295b0-0cca-45a9-a9ce-9e3038006cf1@6c48a",
+            "af65004b-b3ad-487a-b5fa-809787f2d7bf@6c48a",
+            "b801b769-f34c-4e89-8171-a73997599319@6c48a",
+            "bd3d8b5d-d061-4e04-94cf-823e390b91d4@6c48a",
+            "ca4d2c14-a367-4104-ad5c-724fd5bf3294@6c48a",
+            "cfad2122-0e70-41d6-b5c7-8315c51b8278@6c48a",
+            "d5dc470f-7561-4a6a-8ad8-7637e5a4d8c7@6c48a",
+            "dc9cb92a-1d1a-4051-85f4-95138e862bbb@6c48a",
+            "eb9062d0-8a5e-44a5-984f-eca7620ec52a@6c48a",
+            "ebcbf4d9-c017-457b-8661-03d05459ea82@6c48a",
+            "ed0454b3-b52a-449a-b2d2-662b18549613@6c48a",
+            "ee034afb-56a9-44db-915c-04e0e52841d2@6c48a",
+            "f73d9e1d-1f5d-4475-b147-94591f6f2528@6c48a"
+        ]
+    },
     "versions": {
         "import": [],
         "native": []
     },
     "redirect": [],
     "debug": true,
-    "extensionMap": {},
+    "extensionMap": {
+        ".cconb": [
+            "11acb68d-2961-434c-8b49-070820d25844"
+        ]
+    },
     "hasPreloadScript": true,
     "dependencyRelationships": {}
 }
