@@ -230,8 +230,99 @@ System.register("chunks:///_virtual/BottleLandEffect.ts", ['./rollupPluginModLoB
   };
 });
 
-System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './PowerBarController.ts', './Bottle.ts', './StabilityUI.ts', './HandController.ts'], function (exports) {
-  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, _createForOfIteratorHelperLoose, cclegacy, _decorator, Node, Prefab, Label, Camera, AudioClip, resources, JsonAsset, instantiate, UITransform, AudioSource, Vec3, tween, Component, PowerBarController, GradeType, Bottle, StabilityUI, HandController;
+System.register("chunks:///_virtual/EffectController.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
+  var _inheritsLoose, cclegacy, _decorator, Sprite, resources, SpriteFrame, Component;
+  return {
+    setters: [function (module) {
+      _inheritsLoose = module.inheritsLoose;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      Sprite = module.Sprite;
+      resources = module.resources;
+      SpriteFrame = module.SpriteFrame;
+      Component = module.Component;
+    }],
+    execute: function () {
+      var _dec, _class;
+      cclegacy._RF.push({}, "a865aO72RNAVZAebD58hiyq", "EffectController", undefined);
+      var ccclass = _decorator.ccclass;
+      var EffectController = exports('EffectController', (_dec = ccclass('EffectController'), _dec(_class = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(EffectController, _Component);
+        function EffectController() {
+          var _this;
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+          _this._sprite = null;
+          _this._frames = [];
+          _this._index = 0;
+          _this._elapsed = 0;
+          _this._duration = 0.5;
+          _this._onEnd = null;
+          return _this;
+        }
+        var _proto = EffectController.prototype;
+        _proto.onLoad = function onLoad() {
+          this._sprite = this.getComponent(Sprite);
+          this.node.active = false;
+        };
+        _proto.play = function play(grade, duration, onEnd) {
+          var _this2 = this;
+          if (duration === void 0) {
+            duration = 0.5;
+          }
+          this._frames = [];
+          this._index = 0;
+          this._elapsed = 0;
+          this._duration = duration;
+          this._onEnd = onEnd;
+          var dir = grade === 'Perfect' ? 'Effect/perfect' : grade === 'Good' ? 'Effect/good' : 'Effect/miss';
+          console.error("[EFFECT] \u52A0\u8F7D\u5E8F\u5217\u5E27: " + dir);
+          resources.loadDir(dir, SpriteFrame, function (err, frames) {
+            if (err) {
+              console.warn('加载动效帧失败:', err);
+              return;
+            }
+            console.error("[EFFECT] \u52A0\u8F7D\u6210\u529F: " + frames.length + " \u5E27");
+            _this2._frames = frames;
+            _this2.node.active = true;
+            _this2._showFrame(0);
+          });
+        };
+        _proto.update = function update(dt) {
+          if (this._frames.length === 0) return;
+          this._elapsed += dt;
+          var seg = this._duration / this._frames.length;
+          var idx = Math.min(Math.floor(this._elapsed / seg), this._frames.length - 1);
+          if (idx !== this._index) {
+            this._index = idx;
+            this._showFrame(idx);
+          }
+          if (this._elapsed >= this._duration) {
+            this._frames = [];
+            this.node.active = false;
+            if (this._onEnd) {
+              this._onEnd();
+              this._onEnd = null;
+            }
+          }
+        };
+        _proto._showFrame = function _showFrame(idx) {
+          if (this._sprite && idx < this._frames.length) {
+            this._sprite.spriteFrame = this._frames[idx];
+          }
+        };
+        return EffectController;
+      }(Component)) || _class));
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './PowerBarController.ts', './Bottle.ts', './StabilityUI.ts', './HandController.ts', './EffectController.ts'], function (exports) {
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, _createForOfIteratorHelperLoose, cclegacy, _decorator, Node, Prefab, Label, Camera, AudioClip, resources, JsonAsset, instantiate, UITransform, AudioSource, Vec3, tween, Component, PowerBarController, GradeType, Bottle, StabilityUI, HandController, EffectController;
   return {
     setters: [function (module) {
       _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
@@ -264,9 +355,11 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
       StabilityUI = module.StabilityUI;
     }, function (module) {
       HandController = module.HandController;
+    }, function (module) {
+      EffectController = module.EffectController;
     }],
     execute: function () {
-      var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15;
+      var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16;
       cclegacy._RF.push({}, "6819evjpIxCY6LcK38SHLDV", "GameManager", undefined);
       var ccclass = _decorator.ccclass,
         property = _decorator.property;
@@ -313,6 +406,9 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
       }), _dec16 = property({
         type: AudioClip,
         tooltip: '背景音乐'
+      }), _dec17 = property({
+        type: Node,
+        tooltip: '抛瓶动效节点（EffectController）'
       }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
         _inheritsLoose(GameManager, _Component);
         function GameManager() {
@@ -336,6 +432,7 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
           _initializerDefineProperty(_this, "sfxGood", _descriptor13, _assertThisInitialized(_this));
           _initializerDefineProperty(_this, "sfxMiss", _descriptor14, _assertThisInitialized(_this));
           _initializerDefineProperty(_this, "bgm", _descriptor15, _assertThisInitialized(_this));
+          _initializerDefineProperty(_this, "effectNode", _descriptor16, _assertThisInitialized(_this));
           _this._config = null;
           _this._bottleCount = 0;
           _this._isThrowing = false;
@@ -499,6 +596,12 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
           var sfxMap = (_sfxMap = {}, _sfxMap[GradeType.PERFECT] = this.sfxPerfect, _sfxMap[GradeType.GOOD] = this.sfxGood, _sfxMap[GradeType.MISS] = this.sfxMiss, _sfxMap);
           var clip = sfxMap[grade];
           if (clip && as) as.playOneShot(clip, 1);
+
+          // 播放抛瓶动效
+          if (this.effectNode) {
+            var ec = this.effectNode.getComponent(EffectController);
+            if (ec) ec.play(grade);
+          }
           var costKey = grade;
           var cost = (_this$_config$stabili = this._config.stability.cost[costKey]) != null ? _this$_config$stabili : 0;
           if (this.stabilityUI) {
@@ -758,6 +861,13 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
           return null;
         }
       }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, "bgm", [_dec16], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, "effectNode", [_dec17], {
         configurable: true,
         enumerable: true,
         writable: true,
@@ -1032,9 +1142,9 @@ System.register("chunks:///_virtual/ImageSwapButton.ts", ['./rollupPluginModLoBa
   };
 });
 
-System.register("chunks:///_virtual/main", ['./BottleLandEffect.ts', './Bottle.ts', './GameManager.ts', './HandController.ts', './StabilityUI.ts', './ImageSwapButton.ts', './PauseButton.ts', './PowerBarController.ts', './RestartGame.ts', './ResumeButton.ts', './SceneSwitchButton.ts', './StabilityMonitor.ts', './ValueSlot.ts'], function () {
+System.register("chunks:///_virtual/main", ['./BottleLandEffect.ts', './EffectController.ts', './Bottle.ts', './GameManager.ts', './HandController.ts', './StabilityUI.ts', './ImageSwapButton.ts', './PauseButton.ts', './PowerBarController.ts', './RestartGame.ts', './ResumeButton.ts', './SceneSwitchButton.ts', './StabilityMonitor.ts', './ValueSlot.ts'], function () {
   return {
-    setters: [null, null, null, null, null, null, null, null, null, null, null, null, null],
+    setters: [null, null, null, null, null, null, null, null, null, null, null, null, null, null],
     execute: function () {}
   };
 });
