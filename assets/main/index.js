@@ -321,8 +321,8 @@ System.register("chunks:///_virtual/EffectController.ts", ['./rollupPluginModLoB
   };
 });
 
-System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './PowerBarController.ts', './Bottle.ts', './StabilityUI.ts', './HandController.ts', './EffectController.ts'], function (exports) {
-  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, _createForOfIteratorHelperLoose, cclegacy, _decorator, Node, Prefab, Label, Camera, AudioClip, resources, JsonAsset, instantiate, UITransform, AudioSource, Vec3, tween, Component, PowerBarController, GradeType, Bottle, StabilityUI, HandController, EffectController;
+System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './PowerBarController.ts', './Bottle.ts', './StabilityUI.ts', './HandController.ts', './EffectController.ts', './GamePause.ts'], function (exports) {
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, _createForOfIteratorHelperLoose, cclegacy, _decorator, Node, Prefab, Label, Camera, AudioClip, resources, JsonAsset, instantiate, UITransform, AudioSource, Vec3, tween, Component, PowerBarController, GradeType, Bottle, StabilityUI, HandController, EffectController, GamePause;
   return {
     setters: [function (module) {
       _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
@@ -357,6 +357,8 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
       HandController = module.HandController;
     }, function (module) {
       EffectController = module.EffectController;
+    }, function (module) {
+      GamePause = module.GamePause;
     }],
     execute: function () {
       var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16;
@@ -445,6 +447,7 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
         }
         var _proto = GameManager.prototype;
         _proto.start = function start() {
+          GamePause.reset();
           this._loadConfig();
         };
         _proto._loadConfig = function _loadConfig() {
@@ -880,6 +883,63 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
   };
 });
 
+System.register("chunks:///_virtual/GamePause.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
+  var _createClass, cclegacy, director, isValid;
+  return {
+    setters: [function (module) {
+      _createClass = module.createClass;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      director = module.director;
+      isValid = module.isValid;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "3fefcoAJZ1Gn6qCPc+NfYCH", "GamePause", undefined);
+
+      /** 仅暂停游戏层逻辑，不影响暂停菜单上的按钮。 */
+      var GamePause = exports('GamePause', /*#__PURE__*/function () {
+        function GamePause() {}
+        GamePause.pause = function pause(gameRoot) {
+          if (GamePause._paused) return;
+          GamePause._paused = true;
+          GamePause._gameRoot = gameRoot;
+          if (gameRoot) {
+            director.getScheduler().pauseTarget(gameRoot);
+          }
+        };
+        GamePause.resume = function resume(gameRoot) {
+          if (!GamePause._paused) return;
+          GamePause._paused = false;
+          var root = gameRoot != null ? gameRoot : GamePause._gameRoot;
+          if (root && isValid(root)) {
+            director.getScheduler().resumeTarget(root);
+          }
+          GamePause._gameRoot = null;
+        }
+
+        /** 离开场景或重新进入游戏时调用，避免静态暂停状态残留。 */;
+        GamePause.reset = function reset() {
+          if (GamePause._gameRoot && isValid(GamePause._gameRoot)) {
+            director.getScheduler().resumeTarget(GamePause._gameRoot);
+          }
+          GamePause._paused = false;
+          GamePause._gameRoot = null;
+        };
+        _createClass(GamePause, null, [{
+          key: "isPaused",
+          get: function get() {
+            return GamePause._paused;
+          }
+        }]);
+        return GamePause;
+      }());
+      GamePause._paused = false;
+      GamePause._gameRoot = null;
+      cclegacy._RF.pop();
+    }
+  };
+});
+
 System.register("chunks:///_virtual/HandController.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
   var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Node, Sprite, tween, Component;
   return {
@@ -1065,8 +1125,8 @@ System.register("chunks:///_virtual/HandController.ts", ['./rollupPluginModLoBab
   };
 });
 
-System.register("chunks:///_virtual/ImageSwapButton.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
-  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Node, Sprite, director, Component;
+System.register("chunks:///_virtual/ImageSwapButton.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GamePause.ts'], function (exports) {
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Node, Sprite, director, Component, GamePause;
   return {
     setters: [function (module) {
       _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
@@ -1080,6 +1140,8 @@ System.register("chunks:///_virtual/ImageSwapButton.ts", ['./rollupPluginModLoBa
       Sprite = module.Sprite;
       director = module.director;
       Component = module.Component;
+    }, function (module) {
+      GamePause = module.GamePause;
     }],
     execute: function () {
       var _dec, _dec2, _class, _class2, _descriptor, _descriptor2;
@@ -1116,6 +1178,7 @@ System.register("chunks:///_virtual/ImageSwapButton.ts", ['./rollupPluginModLoBa
           var sprite = this.getComponent(Sprite);
           if (sprite) sprite.enabled = true;
           if (this.sceneName) {
+            GamePause.reset();
             this.scheduleOnce(function () {
               return director.loadScene(_this2.sceneName);
             }, this.delay);
@@ -1142,15 +1205,15 @@ System.register("chunks:///_virtual/ImageSwapButton.ts", ['./rollupPluginModLoBa
   };
 });
 
-System.register("chunks:///_virtual/main", ['./BottleLandEffect.ts', './EffectController.ts', './Bottle.ts', './GameManager.ts', './HandController.ts', './StabilityUI.ts', './ImageSwapButton.ts', './PauseButton.ts', './PowerBarController.ts', './RestartGame.ts', './ResumeButton.ts', './SceneSwitchButton.ts', './StabilityMonitor.ts', './ValueSlot.ts'], function () {
+System.register("chunks:///_virtual/main", ['./BottleLandEffect.ts', './EffectController.ts', './Bottle.ts', './GameManager.ts', './GamePause.ts', './HandController.ts', './StabilityUI.ts', './ImageSwapButton.ts', './PauseButton.ts', './PowerBarController.ts', './RestartGame.ts', './ResumeButton.ts', './SceneSwitchButton.ts', './StabilityMonitor.ts', './ValueSlot.ts'], function () {
   return {
-    setters: [null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+    setters: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
     execute: function () {}
   };
 });
 
-System.register("chunks:///_virtual/PauseButton.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
-  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, AudioClip, Node, Button, AudioSource, director, Component;
+System.register("chunks:///_virtual/PauseButton.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GamePause.ts'], function (exports) {
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, AudioClip, Node, Button, AudioSource, Component, GamePause;
   return {
     setters: [function (module) {
       _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
@@ -1164,8 +1227,9 @@ System.register("chunks:///_virtual/PauseButton.ts", ['./rollupPluginModLoBabelH
       Node = module.Node;
       Button = module.Button;
       AudioSource = module.AudioSource;
-      director = module.director;
       Component = module.Component;
+    }, function (module) {
+      GamePause = module.GamePause;
     }],
     execute: function () {
       var _dec, _dec2, _dec3, _dec4, _dec5, _class, _class2, _descriptor, _descriptor2, _descriptor3;
@@ -1203,15 +1267,16 @@ System.register("chunks:///_virtual/PauseButton.ts", ['./rollupPluginModLoBabelH
           }
         };
         _proto.onPause = function onPause() {
+          if (GamePause.isPaused) return;
           if (this.clickAudio) {
             var _this$node$getParent;
             var audioSource = this.getComponent(AudioSource) || ((_this$node$getParent = this.node.getParent()) == null ? void 0 : _this$node$getParent.getComponent(AudioSource));
             audioSource == null || audioSource.playOneShot(this.clickAudio);
           }
+          GamePause.pause(this.gameLayer);
           if (this.gameLayer) {
             this.gameLayer.active = false;
           }
-          director.getScheduler().setTimeScale(0);
           if (this.pausePanel) {
             this.pausePanel.active = true;
           }
@@ -1244,8 +1309,8 @@ System.register("chunks:///_virtual/PauseButton.ts", ['./rollupPluginModLoBabelH
   };
 });
 
-System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
-  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, _createForOfIteratorHelperLoose, cclegacy, _decorator, CCInteger, CCFloat, Node, Label, input, EventMouse, UITransform, Vec3, Color, Component;
+System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GamePause.ts'], function (exports) {
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, _createForOfIteratorHelperLoose, cclegacy, _decorator, CCInteger, CCFloat, Node, Label, input, EventMouse, UITransform, Vec3, Color, Component, GamePause;
   return {
     setters: [function (module) {
       _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
@@ -1266,6 +1331,8 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
       Vec3 = module.Vec3;
       Color = module.Color;
       Component = module.Component;
+    }, function (module) {
+      GamePause = module.GamePause;
     }],
     execute: function () {
       var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13;
@@ -1382,6 +1449,10 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
           this._updateGradeDisplay();
         };
         _proto.update = function update(dt) {
+          if (GamePause.isPaused) {
+            this._isCharging = false;
+            return;
+          }
           if (!this._isCharging) return;
           this._currentValue += this.speed * dt * this._direction;
           if (this._currentValue >= 100) {
@@ -1399,6 +1470,7 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
         ;
 
         _proto.onMouseDown = function onMouseDown(evt) {
+          if (GamePause.isPaused) return;
           if (evt.getButton() === EventMouse.BUTTON_LEFT) {
             if (!this._canCharge) return;
             this.startCharging();
@@ -1408,6 +1480,7 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
           this._canCharge = v;
         };
         _proto.onMouseUp = function onMouseUp(evt) {
+          if (GamePause.isPaused) return;
           if (evt.getButton() === EventMouse.BUTTON_LEFT) {
             this.stopCharging();
           }
@@ -1456,6 +1529,7 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
         ;
 
         _proto.startCharging = function startCharging() {
+          if (GamePause.isPaused) return;
           this._isCharging = true;
           this._currentValue = 0;
           this._direction = 1;
@@ -1611,8 +1685,8 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
   };
 });
 
-System.register("chunks:///_virtual/RestartGame.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
-  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, AudioClip, Button, AudioSource, director, Component;
+System.register("chunks:///_virtual/RestartGame.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GamePause.ts'], function (exports) {
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, AudioClip, Button, AudioSource, director, Component, GamePause;
   return {
     setters: [function (module) {
       _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
@@ -1627,6 +1701,8 @@ System.register("chunks:///_virtual/RestartGame.ts", ['./rollupPluginModLoBabelH
       AudioSource = module.AudioSource;
       director = module.director;
       Component = module.Component;
+    }, function (module) {
+      GamePause = module.GamePause;
     }],
     execute: function () {
       var _dec, _dec2, _dec3, _class, _class2, _descriptor, _descriptor2;
@@ -1661,6 +1737,7 @@ System.register("chunks:///_virtual/RestartGame.ts", ['./rollupPluginModLoBabelH
             var audioSource = this.getComponent(AudioSource) || ((_this$node$getParent = this.node.getParent()) == null ? void 0 : _this$node$getParent.getComponent(AudioSource));
             audioSource == null || audioSource.playOneShot(this.clickAudio);
           }
+          GamePause.reset();
           if (this.sceneName) {
             director.loadScene(this.sceneName);
           }
@@ -1686,8 +1763,8 @@ System.register("chunks:///_virtual/RestartGame.ts", ['./rollupPluginModLoBabelH
   };
 });
 
-System.register("chunks:///_virtual/ResumeButton.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
-  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, AudioClip, Node, Button, AudioSource, director, Component;
+System.register("chunks:///_virtual/ResumeButton.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GamePause.ts'], function (exports) {
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, AudioClip, Node, Button, AudioSource, Component, GamePause;
   return {
     setters: [function (module) {
       _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
@@ -1701,8 +1778,9 @@ System.register("chunks:///_virtual/ResumeButton.ts", ['./rollupPluginModLoBabel
       Node = module.Node;
       Button = module.Button;
       AudioSource = module.AudioSource;
-      director = module.director;
       Component = module.Component;
+    }, function (module) {
+      GamePause = module.GamePause;
     }],
     execute: function () {
       var _dec, _dec2, _dec3, _dec4, _dec5, _class, _class2, _descriptor, _descriptor2, _descriptor3;
@@ -1737,18 +1815,19 @@ System.register("chunks:///_virtual/ResumeButton.ts", ['./rollupPluginModLoBabel
           }
         };
         _proto.onResume = function onResume() {
+          if (!GamePause.isPaused) return;
           if (this.clickAudio) {
             var _this$node$getParent;
             var audioSource = this.getComponent(AudioSource) || ((_this$node$getParent = this.node.getParent()) == null ? void 0 : _this$node$getParent.getComponent(AudioSource));
             audioSource == null || audioSource.playOneShot(this.clickAudio);
           }
-          director.getScheduler().setTimeScale(1);
-          if (this.gameLayer) {
-            this.gameLayer.active = true;
-          }
           if (this.pausePanel) {
             this.pausePanel.active = false;
           }
+          if (this.gameLayer) {
+            this.gameLayer.active = true;
+          }
+          GamePause.resume(this.gameLayer);
         };
         return ResumeButton;
       }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "clickAudio", [_dec3], {
@@ -1778,8 +1857,8 @@ System.register("chunks:///_virtual/ResumeButton.ts", ['./rollupPluginModLoBabel
   };
 });
 
-System.register("chunks:///_virtual/SceneSwitchButton.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
-  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Node, AudioClip, Button, AudioSource, director, Component;
+System.register("chunks:///_virtual/SceneSwitchButton.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GamePause.ts'], function (exports) {
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Node, AudioClip, Button, AudioSource, director, Component, GamePause;
   return {
     setters: [function (module) {
       _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
@@ -1795,6 +1874,8 @@ System.register("chunks:///_virtual/SceneSwitchButton.ts", ['./rollupPluginModLo
       AudioSource = module.AudioSource;
       director = module.director;
       Component = module.Component;
+    }, function (module) {
+      GamePause = module.GamePause;
     }],
     execute: function () {
       var _dec, _dec2, _dec3, _dec4, _class, _class2, _descriptor, _descriptor2, _descriptor3;
@@ -1833,6 +1914,7 @@ System.register("chunks:///_virtual/SceneSwitchButton.ts", ['./rollupPluginModLo
             audioSource == null || audioSource.playOneShot(this.clickAudio);
           }
           if (this.sceneName) {
+            GamePause.reset();
             director.loadScene(this.sceneName);
           }
         };
