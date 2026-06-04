@@ -495,6 +495,10 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
           this._consecutivePerfects = 0;
           this._isForcePerfectMode = false;
           this._forcePerfectTimer = 0;
+          if (this.powerBar) {
+            this.powerBar.resetSpeed();
+            this.powerBar.setForcedGrade(null);
+          }
           this._initialTowerLocalY = this.towerContainer ? this.towerContainer.position.y - this.node.position.y : 0;
 
           // 记录背景初始 Y，计算可下移的最小 Y
@@ -803,11 +807,13 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
             if (this._forcePerfectTimer <= 0) {
               this._isForcePerfectMode = false;
               this._forcePerfectTimer = 0;
+              this._consecutivePerfects = 0;
               if (this.forcePerfectIndicator) {
                 this.forcePerfectIndicator.active = false;
               }
               if (this.powerBar) {
                 this.powerBar.setForcedGrade(null);
+                this.powerBar.resetSpeed();
               }
             }
           }
@@ -815,13 +821,11 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
         _proto._activateForcePerfectMode = function _activateForcePerfectMode() {
           this._isForcePerfectMode = true;
           this._forcePerfectTimer = this.forcePerfectDuration;
-          this._consecutivePerfects = 0;
           if (this.forcePerfectIndicator) {
             this.forcePerfectIndicator.active = true;
           }
           if (this.powerBar) {
             this.powerBar.setForcedGrade(GradeType.PERFECT);
-            this.powerBar.resetSpeed();
           }
         };
         return GameManager;
@@ -1626,6 +1630,9 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
           return this._currentValue;
         };
         _proto.getGrade = function getGrade() {
+          if (this._forcedGrade) {
+            return this._forcedGrade;
+          }
           if (this._currentValue >= this.perfectMin && this._currentValue <= this.perfectMax) {
             return GradeType.PERFECT;
           } else if (this._currentValue >= this.goodMin && this._currentValue <= this.goodMax) {
@@ -1656,8 +1663,7 @@ System.register("chunks:///_virtual/PowerBarController.ts", ['./rollupPluginModL
         };
         _proto._updateGradeDisplay = function _updateGradeDisplay() {
           if (this.gradeLabel) {
-            var _this$_forcedGrade;
-            var grade = (_this$_forcedGrade = this._forcedGrade) != null ? _this$_forcedGrade : this.getGrade();
+            var grade = this.getGrade();
             this.gradeLabel.string = grade;
             switch (grade) {
               case GradeType.PERFECT:
